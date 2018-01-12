@@ -1,8 +1,7 @@
 var express = require('express');
 var router = express.Router();
 
-router.get('/users', function(req, res){
-    res.json({status: "success"});
-});
+router.use('/api', require('./api'));
+router.use('/', require('./client'));
 
 module.exports = router;
