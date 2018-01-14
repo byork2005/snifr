@@ -1,13 +1,23 @@
 module.exports = function(sequelize, DataTypes) {
     var Communication = sequelize.define("Communication", {
-        initiator_id: {
-            type: Data
-        }
+        message_type: {
+            type: DataTypes.STRING,
+            allowNull: false,
+            validate: {
+                len: [1]
+            }
+        },
+        message_content: {
+            type: DataTypes.STRING,
+            allowNull: true,
+            validate: {
+                len: [1]
+            }
+        },
+        timestamps: true,
     });
 
-    Communication.associate = function(models) {
 
-    }
 }
 
 
