@@ -7,8 +7,15 @@ module.exports = function(sequelize, DataTypes) {
                 len: [1]
             }
         },
-        sex: {
+        breed: {
             type: DataTypes.STRING,
+            allowNull: false,
+            validate: {
+                len: [1]
+            }
+        },
+        sex: {
+            type: DataTypes.BOOLEAN,
             allowNull: false,
             validate: {
                 len: [1]
@@ -22,7 +29,7 @@ module.exports = function(sequelize, DataTypes) {
             }
         },
         neutered_spayed: {
-            type: DataTypes.STRING,
+            type: DataTypes.BOOLEAN,
             allowNull: false,
             validate: {
                 len: [1]
@@ -78,12 +85,13 @@ module.exports = function(sequelize, DataTypes) {
 
     });
     Dog.associate = function(models) {
-        Dog.belongsTo(models.User, {
+        Dog.belongsTo(models.Users, {
             foreignKey: {
                 allowNull: false
             }
-        });
-    };
+        }),
+        Dog.hasOne(models.Survey);
+    }
 
     return Dog;
 }
