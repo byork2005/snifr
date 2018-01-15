@@ -14,11 +14,10 @@ module.exports = function(sequelize, DataTypes) {
                 len: [1]
             }
         },
-        timestamps: true,
     });
 
-
-}
+    return Communication;
+};
 
 
 // message_id

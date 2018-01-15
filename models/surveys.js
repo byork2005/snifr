@@ -1,4 +1,4 @@
-module.exports = function(sequelize, DataType) {
+module.exports = function(sequelize, DataTypes) {
     var Survey = sequelize.define("Survey", {
         survey_question_1: {
             type: DataTypes.STRING,
@@ -46,10 +46,10 @@ module.exports = function(sequelize, DataType) {
         preferred_sex: DataTypes.BOOLEAN,
         preferred_range: DataTypes.INTEGER,
 
-    })
+    });
 
     Survey.associate = function(models) {
-        Survey.belongsTo(models.Dogs, {
+        Survey.belongsTo(models.Dog, {
             onDelete: 'cascade'
         });
     };

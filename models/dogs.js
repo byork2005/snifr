@@ -84,15 +84,12 @@ module.exports = function(sequelize, DataTypes) {
         },
 
     });
+    
     Dog.associate = function(models) {
-        Dog.belongsTo(models.Users, {
-            foreignKey: {
-                allowNull: false
-            }
-        }),
-        Dog.hasOne(models.Survey);
-    }
+        Dog.belongsTo(models.User);
+        //Dog.hasOne(models.Survey);
+    };
 
     return Dog;
-}
+};
 
