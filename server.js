@@ -14,7 +14,7 @@ app.use(bodyParser.json());
 
 passport.use(new Strategy(
   function(username, password, cb) {
-    db.users.findByUsername(username, function(err, user) {
+    db.User.findByUsername(username, function(err, user) {
       if (err) { return cb(err); }
       if (!user) { return cb(null, false); }
       if (user.password != password) { return cb(null, false); }
@@ -23,19 +23,28 @@ passport.use(new Strategy(
   }));
 
 passport.serializeUser(function(user, cb) {
+  console.log("ser user")
+  console.log(user.id);
   cb(null, user.id);
 });
 
 passport.deserializeUser(function(id, cb) {
-  db.users.findById(id, function (err, user) {
-    if (err) { return cb(err); }
-    cb(null, user);
+  console.log("des prob")
+  console.log(id);
+  db.User.findById(id).then(function(user){
+    if(user){
+      console.log("found")
+      cb(null, user.get());
+    } else {
+      cb(user.errors, null);
+    }
   });
 });
 
+app.use(require('morgan')('combined'));
 app.use(require('cookie-parser')());
 app.use(require('body-parser').urlencoded({ extended: true }));
-app.use(require('express-session')({ secret: 'keyboard cat', resave: false, saveUninitialized: false }));
+app.use(require('express-session')({ secret: 'keyboard cat', resave: false, saveUninitialized: false}));
 
 app.use(passport.initialize());
 app.use(passport.session());
