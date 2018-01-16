@@ -28,7 +28,11 @@ router.post('/login',
                 successRedirect: '/auth'
             }));
            
-
+router.get('/logout',function(req, res){
+    req.session.destroy(function(err){
+        res.redirect('/auth')
+    })
+})
             
 router.get('/notAuth', function(req, res){
     var hbsObj = {};
@@ -39,8 +43,9 @@ router.get('/auth',
             ensureAuth,
             function(req, res){
                 console.log("render auth")
+                console.log(req.user);
                 var hbsObj = {};
-                res.render('auth', hbsObj);
+                res.render('auth', req.user);
             });
 
 module.exports = router;
