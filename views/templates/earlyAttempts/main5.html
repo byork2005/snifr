@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Snifr</title>
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+            rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <link rel="stylesheet" href="./css/style.css" type="text/css">
+        <script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
+            crossorigin="anonymous"></script>
+        <script src="./js/app.js"></script>
+    </head>
+    <body>
+        
+        <div class="row">
+            <div class="col col-sm-2" id="leftSide">
+                <div id="leftTitle">
+                    <img class="img-circle" id="leftLogo" src="logo1.jpg"> 
+                    <h4>Snifr</h4>
+                </div>
+                <div id="taskBar">
+                    <a href="">Home</a>
+                    <hr>
+                    <a href="">Matches</a>
+                    <hr>
+                    <a href="">Nearby</a>
+                    <hr>
+                    <a href="">Barks</a>
+                    <hr>
+                </div>
+            </div>
+            
+            <div class="col col-sm-10">
+            <div class="row" id="header">
+                <h4>A Website for the Bog on the Prowl</h4>
+                <div class="input-group" id="searchBox">
+                    <input type="text" class="form-control" placeholder="Search a Known Pup...">
+                      <span class="input-group-btn">
+                        <button class="btn btn-default" type="button">Go!</button>
+                      </span>
+                </div>
+            
+            </div>
+
+            <div class="row" id="container">
+                {{{ body }}}
+            </div>
+            <!-- <div class="col col-md-2" id="rightSide"> 
+                <p>test</p>
+            </div>-->
+        </div>
+    </body>
+
+    <style type="text/css">
+
+        .img-circle {
+            border-radius: 50%;
+        }
+
+        #header {
+            position: relative;
+            top: 0%;
+            height: 80px;
+            background-color: blue;
+        }
+
+        #searchBox {
+            position: absolute;
+            right: 0%;
+            width: 220px;
+            top: 3px;
+        }
+
+        #leftTitle {
+            display: block;
+            position: absolute;
+            top: 12%;
+        }
+
+        #leftLogo {
+            position: absolute;
+            left: 50%;
+            height: 124px;
+            width: 132px;
+            bottom: 15px;
+        }
+
+        #leftSide {
+            background-color: blue;
+            margin-top: 0%;
+            height: 960px;
+            position: relative;
+            border-left: 20px outset #DC143C;
+            width: 220px;
+        }
+
+        #taskBar {
+            text-align: center;
+            position: absolute;
+            top: 17%;
+            width: 180px;
+            background-color: #9400D3;
+            right: 0%;
+            bottom: 0%;
+            border-radius: 50px 0px 0px 0px;
+            
+        }
+    
+    </style>
+</html>

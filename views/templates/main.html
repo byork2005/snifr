@@ -9,6 +9,7 @@
         <script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
             crossorigin="anonymous"></script>
         <script src="./js/app.js"></script>
+        <link rel="stylesheet" href="./assets/style/main.css" type="text/css">
     </head>
     <body>
         <div class="row" id="header">
@@ -17,19 +18,12 @@
                 <div id="title">
                         <h1>Snifr</h1>  
                 </div>
-
-                <!-- <div class="input-group" id="searchBox"> 
-                    <input type="text" class="form-control" placeholder="Search a Known Pup...">
-                      <span class="input-group-btn">
-                        <button class="btn btn-default" type="button">Go!</button>
-                      </span>
-                </div> -->
             
         </div>
         <div class="row" id="mainRow">
             <div class="col col-md-2" id="leftSide">
                 <div>
-                    <img class="img-circle" id="leftLogo" src="logo1.jpg">
+                    <img class="img-circle" id="leftLogo" src="./assets/media/logo1.jpg">
                     
                 </div>
                 <div id="leftTxt">
@@ -52,120 +46,8 @@
                     
                 </div>
             </div>
-            <!-- <div class="col col-md-2" id="rightSide"> 
-                <p>test</p>
-            </div>-->
+    
         </div>
     </body>
 
-    <style type="text/css">
-        #header {
-            background-color: blue;
-            border-top: 5px outset  #00008B;
-            border-left: 20px outset #00008B;
-            margin-bottom: 0%;
-            text-align: center;
-            position: relative;
-            height: 92px;
-        }
-
-        .img-circle {
-            border-radius: 50%;
-            border: 2px solid #B8860B;
-        }
-
-        #title {
-            position: absolute;
-            display: block;
-            top: -20%;
-            left: 45%;
-        }
-
-        #title h1 {
-            font-family: Comic Sans MS, cursive, sans-serif;
-            font-weight: bold;
-            font-size: 72px;
-            color: yellow;
-        }
-
-        #leftLogo {
-            position: absolute;
-            left: 16%;
-            top: -12%;
-            height: 125px;
-            width: 132px;
-            bottom: 15px;
-            
-        }
-
-        #leftTxt {
-            font-family: Comic Sans MS, cursive, sans-serif;
-            position: absolute;
-            top: 7%;
-            text-align: center;
-            margin-right: 15px;
-            color: yellow;
-        }
-
-        #searchBox {
-            position: absolute;
-            right: 0%;
-            width: 220px;
-            top: 5px;
-        }
-
-        #leftSide {
-            background-color: blue;
-            margin-top: 0%;
-            height: 660px;
-            position: relative;
-            border-left: 20px outset #00008B;
-            width: 220px;
-        }
-
-        #taskBar {
-            text-align: center;
-            position: absolute;
-            top: 15%;
-            width: 180px;
-            background-color: #6495ED;
-            right: 0%;
-            bottom: 0%;
-            border-radius: 50px 0px 0px 0px;
-            
-        }
-
-        #taskBar a {
-            color: #483D8B;
-            font-weight: bold;
-        }
-
-        #taskBar hr {
-            background-color: #00008B;
-            width: 165px;
-            border-top: 2px solid #00008B;
-        }
-
-        #tb1 {
-            margin-top: 5%;
-        }
-
-        #mainRow {
-            background-image: url('contBG.jpg');
-            background-repeat: no-repeat;
-            background-size:cover
-        }
-
-        #container {
-            border: 5px solid #00008B;
-            border-radius: 30px 30px 30px 30px;
-            display: block;
-            margin: 2%;
-            width: 100%;
-            height: 600px;
-            background-color: #FFFAF0;
-
-        }
-    
-    </style>
 </html>
