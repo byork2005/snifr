@@ -3,9 +3,9 @@ var router = express.Router();
 var passport = require('passport');
 
 var ensureAuth = function(req, res, next){
-    console.log("authing")
+    console.log("authing");
     if (req.isAuthenticated()){
-        console.log("authed")
+        console.log("authed");
         return next();
     } else {
         res.redirect('/notAuth');
@@ -17,22 +17,35 @@ router.get('/', function(req, res){
     res.render('index', hbsObj);
 });
 
-router.get('/login', function(req, res){
+router.get('/signin', function(req, res){
     var hbsObj = {};
-    res.render('login', hbsObj);
+    res.render('signin', hbsObj);
 });
 
-router.post('/login',
-            passport.authenticate('local', {
+router.post('/signin',
+            passport.authenticate('local-signin', {
+                failureRedirect: '/notAuth',
+                successRedirect: '/auth'
+            }));
+
+router.get('/signup', function(req, res){
+    var hbsObj = {};
+    res.render('signup', hbsObj);
+});
+
+router.post('/signup',
+            passport.authenticate('local-signup',
+            {
                 failureRedirect: '/notAuth',
                 successRedirect: '/auth'
             }));
            
 router.get('/logout',function(req, res){
     req.session.destroy(function(err){
-        res.redirect('/auth')
-    })
-})
+        if(err) throw err;
+        res.redirect('/auth');
+    });
+});
             
 router.get('/notAuth', function(req, res){
     var hbsObj = {};
