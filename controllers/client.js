@@ -55,7 +55,7 @@ router.get('/notAuth', function(req, res){
 router.get('/auth',
             ensureAuth,
             function(req, res){
-                console.log("render auth")
+                console.log("render auth");
                 console.log(req.user);
                 var hbsObj = {};
                 res.render('auth', req.user);
