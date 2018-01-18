@@ -14,6 +14,14 @@ module.exports = function(sequelize, DataTypes) {
                 len: [1]
             }
         },
+        initiator_id: {
+            type: DataTypes.INT,
+            allowNull: false
+        },
+        receiver_id: {
+            type: DataTypes.INT,
+            allowNull: false
+        }
     });
 
     return Communication;
