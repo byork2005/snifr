@@ -8,10 +8,6 @@ var env       = process.env.NODE_ENV || 'development';
 var config    = require(__dirname + '/../config/config.json')[env];
 var db        = {};
 var express = require('express');
-var mustacheExpress = require('mustache-express');
-var app = express();
-
-var express = require('express');
 //var mustacheExpress = require('mustache-express');
 var app = express();
 
