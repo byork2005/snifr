@@ -1,51 +1,75 @@
 module.exports = function(sequelize, DataTypes) {
     var Survey = sequelize.define("Survey", {
-        survey_question_1: {
-            type: DataTypes.STRING,
+        q1: {
+            type: DataTypes.INTEGER,
             allowNull: false,
+            isInt: true,
+            min: 1,
+            max: 5
         },
-        survey_question_2: {
-            type: DataTypes.STRING,
+        q2: {
+            type: DataTypes.INTEGER,
             allowNull: false,
+            isInt: true,
+            min: 1,
+            max: 5
         },
-        survey_question_3: {
-            type: DataTypes.STRING,
+        q3: {
+            type: DataTypes.INTEGER,
             allowNull: false,
+            isInt: true,
+            min: 1,
+            max: 5
         },
-        survey_question_4: {
-            type: DataTypes.STRING,
+        q4: {
+            type: DataTypes.INTEGER,
             allowNull: false,
+            isInt: true,
+            min: 1,
+            max: 5
         },
-        survey_question_5: {
-            type: DataTypes.STRING,
+        q5: {
+            type: DataTypes.INTEGER,
             allowNull: false,
+            isInt: true,
+            min: 1,
+            max: 5
         },
-        survey_question_6: {
-            type: DataTypes.STRING,
+        q6: {
+            type: DataTypes.INTEGER,
             allowNull: false,
+            isInt: true,
+            min: 1,
+            max: 5
         },
-        survey_question_7: {
-            type: DataTypes.STRING,
+        q7: {
+            type: DataTypes.INTEGER,
             allowNull: false,
+            isInt: true,
+            min: 1,
+            max: 5
         },
-        survey_question_8: {
-            type: DataTypes.STRING,
+        q8: {
+            type: DataTypes.INTEGER,
             allowNull: false,
+            isInt: true,
+            min: 1,
+            max: 5
         },
-        survey_question_9: {
-            type: DataTypes.STRING,
+        q9: {
+            type: DataTypes.INTEGER,
             allowNull: false,
+            isInt: true,
+            min: 1,
+            max: 5
         },
-        survey_question_10: {
-            type: DataTypes.STRING,
+        q10: {
+            type: DataTypes.INTEGER,
             allowNull: false,
+            isInt: true,
+            min: 1,
+            max: 5
         },
-        preferred_size: DataTypes.STRING,
-        preferred_breed: DataTypes.STRING,
-        preferred_neutered_spayed: DataTypes.BOOLEAN,
-        preferred_sex: DataTypes.BOOLEAN,
-        preferred_range: DataTypes.INTEGER,
-
     });
 
     Survey.associate = function(models) {
