@@ -5,13 +5,13 @@
         <title>Snifr</title>
         <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
             rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-        <!-- <link rel="stylesheet" href="./assets/style/main.css" type="text/css">
-        <link rel="stylesheet" href="./assets/style/login.css" type="text/css">
-        <link rel="stylesheet" href="./assets/style/survey.css" type="text/css">
-        <link rel="stylesheet" href="./assets/style/profile.css" type="text/css"> -->
+            <!-- <link rel="stylesheet" href="../../public/css/main.css" type="text/css">
+            <link rel="stylesheet" href="../../public/css/login.css" type="text/css">
+            <link rel="stylesheet" href="../../public/css/survey.css" type="text/css">
+            <link rel="stylesheet" href="../../public/css/profile.css" type="text/css"> -->
         <script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
             crossorigin="anonymous"></script>
-        <script src="./assets/javascript/app.js"></script>
+            <script src="../../js/app.js"></script>
     </head>
     <body>
         <div class="row" id="header">
@@ -25,7 +25,7 @@
         <div class="row" id="mainRow">
             <div class="col col-md-2" id="leftSide">
                 <div>
-                    <img class="img-circle" id="leftLogo" src="./assets/media/logo1.jpg">
+                    <img class="img-circle" id="leftLogo" src="../../public/media/logo1.jpg">
                     
                 </div>
                 <div id="leftTxt">
@@ -53,7 +53,7 @@
                                         <div class="row" id="profileName">
                                             <h2>Ida Bear</h2>      
                                         </div>
-                                        <img id="profileImg" src="./assets/media/imgExample.jpg">
+                                        <img id="profileImg" src="../../public/media/imgExample.jpg">
                                     </div>
                                     <div class="row" id="sniffGrowlRow">
                                         <div class="col col-sm-5">
@@ -68,10 +68,37 @@
                             </div>
                             <div class="col col-sm-1"></div>
                             <div class="col col-sm-6" id="profileInfoCol">
-                                <div class="row" id="profileSniffBarkEditRow">
-                                    
+                                <div class="row" id="profileBasicInfoCont1">
+                                    <div class="row" id="profileBasicInfoRow1">
+                                        <h2>Basic Info</h2>
+                                        <!-- <hr> -->
+                                    </div> 
+                                    <div class="row" id="profileBasicInfoRow2">
+                                        
+                                        <div class="col col-sm-5" id="profileBasicInfoCol1">
+                                            <h4 id="breed">Breed: </h4>
+                                            <h4 id="sex">Sex: </h4>
+                                            <h4 id="size">Size: </h4>
+                                            
+                                        </div>
+                                        <!-- <div class="col col-sm-1"></div> -->
+                                        <div class="col col-sm-5" id="profileBasicInfoCol2">
+                                            <h4 id="age">Age: </h4>
+                                            <h4 id="fixed">Fixed: </h4>
+                                            <h4 id="temperament">Temperament: </h4>
+                                        </div>
+                                    </div>
+                                    <div class="row" id="profileBasicInfoRow3">
+                                        
+                                    </div>
                                 </div>
-                                <div class="row" id="profileBasicInfoRow">
+                                <div class="row" id="profileBasicInfoCont2">
+                                    <div class="row" id="profileDescriptionHeader">
+                                        <h2>Description</h2>
+                                    </div>
+                                    <div class="row" id="profileDescriptionBody">
+                                        <p id="description">I am a playful, yet cautious dog.  I love pets, and cuddles to a limit.  Hate squirrels, they are satan-spawn.  I love playing with other dogs, particularly those around my size, and I am very submissive of those bigger than me.  I always need new friends.</p>
+                                    </div>
                                     
                                 </div>
                             </div>
@@ -185,7 +212,7 @@
         }
 
         #mainRow {
-            background-image: url('./assets/media/contBG.jpg');
+            background-image: url('../../public/media/contBG.jpg');
             background-repeat: no-repeat;
             background-size:cover;
         }
@@ -315,22 +342,58 @@
             font-size: 20px;
         }
 
-        #profileSniffBarkEditRow {
+        #profileBasicInfoCont2 {
             border: 5px solid #00008B;
             border-radius: 30px 30px 30px 30px;
             display: block;
             background-color: #FFFAF0;
-            height: 100px;
-            margin-bottom: 25px;
+            height: 210px;
+            margin-top: 25px;
         }
 
-        #profileBasicInfoRow {
+        #profileDescriptionHeader {
+            text-align: center;
+        }
+
+        #profileDescriptionBody {
+            margin-left: 5px;
+            margin-right: 5px;
+        }
+
+        #profileBasicInfoCont1 {
             border: 5px solid #00008B;
             border-radius: 30px 30px 30px 30px;
             display: block;
             background-color: #FFFAF0;
-            height: 275px;
+            height: 250px;
+            
         }
+
+        #profileBasicInfoRow1 {
+            text-align: center;
+        }
+
+        #profileBasicInfoRow2 {
+            
+        }
+
+        #profileBasicInfoCol1 {
+            margin-left: 2%;
+        }
+
+        #profileBasicInfoCol1 h4{
+            margin-bottom: 30px;
+        }
+
+        #profileBasicInfoCol2 h4{
+            margin-bottom: 30px;
+        }
+
+        #profileBasicInfoRow3 {
+            
+        }
+
+
 
     </style>
 </html>
