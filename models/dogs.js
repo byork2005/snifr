@@ -15,11 +15,11 @@ module.exports = function(sequelize, DataTypes) {
             }
         },
         sex: {
-            type: DataTypes.BOOLEAN,
-            allowNull: false,
-            validate: {
-                len: [1]
-            }
+            type: DataTypes.BOOLEAN, //true === female, false === male
+            allowNull: false
+            // validate: {
+            //     len: [1]
+            // }
         },
         size: {
             type: DataTypes.STRING,
@@ -28,12 +28,12 @@ module.exports = function(sequelize, DataTypes) {
                 len: [1]
             }
         },
-        neutered_spayed: {
+        fixed: {
             type: DataTypes.BOOLEAN,
-            allowNull: false,
-            validate: {
-                len: [1]
-            }
+            allowNull: false
+            // validate: {
+            //     len: [1]
+            // }
         },
         photo: {
             type: DataTypes.STRING,
@@ -42,47 +42,13 @@ module.exports = function(sequelize, DataTypes) {
                 len: [1]
             }
         },
-        survey_question_1: {
+        description: {
             type: DataTypes.STRING,
-            allowNull: false,
-        },
-        survey_question_2: {
-            type: DataTypes.STRING,
-            allowNull: false,
-        },
-        survey_question_3: {
-            type: DataTypes.STRING,
-            allowNull: false,
-        },
-        survey_question_4: {
-            type: DataTypes.STRING,
-            allowNull: false,
-        },
-        survey_question_5: {
-            type: DataTypes.STRING,
-            allowNull: false,
-        },
-        survey_question_6: {
-            type: DataTypes.STRING,
-            allowNull: false,
-        },
-        survey_question_7: {
-            type: DataTypes.STRING,
-            allowNull: false,
-        },
-        survey_question_8: {
-            type: DataTypes.STRING,
-            allowNull: false,
-        },
-        survey_question_9: {
-            type: DataTypes.STRING,
-            allowNull: false,
-        },
-        survey_question_10: {
-            type: DataTypes.STRING,
-            allowNull: false,
-        },
-
+            allowNull: true,
+            validate: {
+                len: [0,255]
+            }
+        }
     });
     
     Dog.associate = function(models) {
