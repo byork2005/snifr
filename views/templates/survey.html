@@ -7,7 +7,9 @@
             rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
         <script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
             crossorigin="anonymous"></script>
-            <script src="../../js/app.js"></script>
+        <script src="../../js/app.js"></script>
+        <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css"> -->
+        <link rel="stylesheet" href="../../public/css/style.css">
         <link rel="stylesheet" href="../../public/css/main.css" type="text/css">
         <link rel="stylesheet" href="../../public/css/login.css" type="text/css">
         <link rel="stylesheet" href="../../public/css/survey.css" type="text/css">
@@ -64,7 +66,13 @@
                                 <h4>Name (Dog, that's you!)</h4>
                                 <input type="text" id="dogName" class="form-control" required>
                                 <h4>Photo</h4>
+<<<<<<< HEAD:views/templates/survey.html
                                 <button type="button" class="btn btn-primary" id="dogPhoto">Add a Photo</button>
+=======
+                                <label class="file-upload-container" for="file-upload">
+                                    <input id="file-upload" type="file" style="display:none;">
+                                   <h4>Select an Image</h4>
+>>>>>>> master:views/templates/survery.html
                                 <h4>Human's Name</h4>
                                 <input type="text" id="humanName" class="form-control" required>
                                 <h4>Human's Zip Code</h4>
@@ -89,7 +97,11 @@
                                     </form>
                                 <h4>Fixed</h4>
                                     <form action="/action_page.php">
+<<<<<<< HEAD:views/templates/survey.html
                                       <select id="fixed"  style="width: 125px";>
+=======
+                                      <select id="neutered"  style="width: 125px";>
+>>>>>>> master:views/templates/survery.html
                                         <option value="true">Yes (you poor thing)</option>
                                         <option value="false">No (down boy!)</option>
                                       </select>
@@ -254,7 +266,7 @@
                                   <br><br>
                                 </form>
                             <hr>
-                            <input type="submit" id="submitSurvey">
+                            <input type="submit" id="submitSurvey" class="submitBtn">
                         </div>
                     </div>
 
@@ -264,5 +276,7 @@
         </div>
            
         <!-- </div> -->
+        <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+        <script src="../../public/js/app.js"></script>
     </body>
 </html>
