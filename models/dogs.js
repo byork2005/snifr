@@ -14,6 +14,13 @@ module.exports = function(sequelize, DataTypes) {
                 len: [1]
             }
         },
+        age: {
+            type: DataTypes.INT,
+            allowNull: false,
+            validate: {
+                len: [1]
+            }
+        },
         sex: {
             type: DataTypes.BOOLEAN,
             allowNull: false,
@@ -27,6 +34,10 @@ module.exports = function(sequelize, DataTypes) {
             validate: {
                 len: [1]
             }
+        },
+        temperament: {
+            type: DataTypes.STRING,
+            allowNull: false
         },
         neutered_spayed: {
             type: DataTypes.BOOLEAN,
