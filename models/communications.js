@@ -16,15 +16,9 @@ module.exports = function(sequelize, DataTypes) {
         },
     });
 
+    Communication.associate = function(models) {
+        Communication.belongsTo(models.User, {foreignKey: 'initiator_id', targetKey: 'id'})
+        Communication.belongsTo(models.User, {foreignKey: 'receiver_id', targetKey: 'id'})
+    }
     return Communication;
 };
-
-
-// message_id
-// initiator_id
-// receiver_id
-// message_type
-// date
-// message_content
-
-// to and from id's will be foreign keys. Need to put associate relations on the dogs page.
