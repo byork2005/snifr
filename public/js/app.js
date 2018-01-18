@@ -1,3 +1,17 @@
+var emailHeader = "<h1>Email</h>";
+var emailInput = "<input>";
+var passwordHeader = "<h1>Password</h>";
+var passwordInput = "<input>";
+
+$( "#LPbut" ).click(function() {
+  $("#loginPanelRowTwoColOne" ).empty();
+  $("#loginPanelRowTwoColTwo" ).empty();
+  $("#loginPanelRowTwoColOne").append(emailHeader, emailInput);
+  $("#loginPanelRowTwoColTwo").append(passwordHeader, passwordInput);
+  $("#loginPanelRowTwoColOne").attr("id", "loginPanelEmailLogin");
+  $("#loginPanelRowTwoColTwo").attr("id", "loginPanelEmailPassword");
+}
+
 var CLOUDINARY_URL = 'https://api.cloudinary.com/v1_1/dakke3tr6/upload';
 var CLOUDINARY_UPLOAD_PRESET = 'i2fwawg4'
 
