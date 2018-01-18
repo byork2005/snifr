@@ -15,8 +15,8 @@ module.exports = function(sequelize, DataTypes) {
             }
         },
         age: {
-            type: DataTypes.INT,
-            allowNull: false, 
+            type: DataTypes.INTEGER,
+            //allowNull: false, 
             // validate: {
             //     len: [1]
             // }
