@@ -1,3 +1,4 @@
+//login page js
 var emailHeader = "<h1>Email</h>";
 var emailInput = "<input>";
 var passwordHeader = "<h1>Password</h>";
