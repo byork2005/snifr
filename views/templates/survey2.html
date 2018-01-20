@@ -147,7 +147,18 @@
             let breed = $("#breed").val().trim();
             let age = parseInt($("#age").val().trim(), 10);
             let sex = $("#sex").val();
-            let size = $("")
+            let size = $("#size").val();
+            let temperament = $("#temperament").val();
+            let fixed = $("#fixed").val();
+            let photo = "temp url";
+            let description = $("#description").val().trim();
+            
+            data = {
+                name, breed, age, sex, size,
+                temperament, fixed, photo, description
+            }
+            
+            console.log(data);
         })
     </script>
 </html>
