@@ -15,19 +15,19 @@ module.exports = function(passport, user) {
             var generateHash = function(password){
                 return bCrypt.hashSync(password, bCrypt.genSaltSync(8), null);
             };
-            
+            console.log(arguments);
             User.findOne({
                 where: {
-                    username: username
+                    email: username
                 }
             }).then(function(user){
                 if (user){
                     return done(null, false, {message: 'That email is already taken'});
                 } else {
-                    var userPassword = generateHash(password);
-                    //var userPassword = password;
+                    //var userPassword = generateHash(password);
+                    var userPassword = password;
                     var data = {
-                        username: username,
+                        email: username,
                         password: userPassword,
                         name: req.body.name,
                         zip_code: req.body.zip
@@ -58,12 +58,13 @@ module.exports = function(passport, user) {
         function(req, username, password, done){
             var User = user;
             var isValidPassword = function(userpass, password){
-                return bCrypt.compareSync(password, userpass);
-            }
+                //return bCrypt.compareSync(password, userpass);
+                return userpass === password;
+            };
             
             User.findOne({
                 where: {
-                    username: username
+                    email: username
                 }
             }).then(function(user){
                 if(!user){
@@ -72,7 +73,7 @@ module.exports = function(passport, user) {
                 if(!isValidPassword(user.password, password)){
                     return done(null, false, {
                         message: 'Incorrect password.'
-                    })
+                    });
                 }
                 var userinfo = user.get();
                 console.log(user);
@@ -83,15 +84,12 @@ module.exports = function(passport, user) {
                 console.log("Error: ", err);
                 return done(null, false, {message: "Something went wrong with your signin"});
             });
-            
         }
-        
-        
-    ))
+    ));
     
     passport.serializeUser(function(user, done){
         done(null, user.id);
-    })
+    });
     
     passport.deserializeUser(function(id, done){
         User.findById(id).then(function(user){
@@ -100,7 +98,6 @@ module.exports = function(passport, user) {
             } else {
                 done(user.errors, null);
             }
-        })
-    })
-    
-}
+        });
+    });
+};

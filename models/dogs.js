@@ -14,16 +14,9 @@ module.exports = function(sequelize, DataTypes) {
                 len: [1]
             }
         },
-        age: {
-            type: DataTypes.INTEGER,
-            //allowNull: false, 
-            // validate: {
-            //     len: [1]
-            // }
-        },
         sex: {
-            type: DataTypes.BOOLEAN,  //female === true, male === false
-            allowNull: false,
+            type: DataTypes.BOOLEAN, //true === female, false === male
+            allowNull: false
             // validate: {
             //     len: [1]
             // }
@@ -35,16 +28,9 @@ module.exports = function(sequelize, DataTypes) {
                 len: [1]
             }
         },
-        temperament: {
-            type: DataTypes.STRING,
-            allowNull: false,
-            validate: {
-                len: [1]
-            }
-        },
         fixed: {
             type: DataTypes.BOOLEAN,
-            allowNull: false,
+            allowNull: false
             // validate: {
             //     len: [1]
             // }
@@ -58,7 +44,7 @@ module.exports = function(sequelize, DataTypes) {
         },
         description: {
             type: DataTypes.STRING,
-            allowNull: false,
+            allowNull: true,
             validate: {
                 len: [0,255]
             }

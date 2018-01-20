@@ -14,7 +14,8 @@ var ensureAuth = function(req, res, next){
 
 router.get('/', function(req, res){
     var hbsObj = {status: "success"};
-    res.render('index', hbsObj);
+    //res.render('index', hbsObj);
+    res.sendfile('./views/templates/login.html')
 });
 
 router.get('/signin', function(req, res){
@@ -55,7 +56,7 @@ router.get('/notAuth', function(req, res){
 router.get('/auth',
             ensureAuth,
             function(req, res){
-                console.log("render auth")
+                console.log("render auth");
                 console.log(req.user);
                 var hbsObj = {};
                 res.render('auth', req.user);

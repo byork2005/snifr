@@ -8,7 +8,7 @@ var env       = process.env.NODE_ENV || 'development';
 var config    = require(__dirname + '/../config/config.json')[env];
 var db        = {};
 var express = require('express');
-var mustacheExpress = require('mustache-express');
+//var mustacheExpress = require('mustache-express');
 var app = express();
 
 if (config.use_env_variable) {
@@ -38,17 +38,16 @@ db.Sequelize = Sequelize;
 
 module.exports = db;
 
-// route for image upload
-app.engine('html', mustacheExpress());
-app.set('view engine', 'mustache');
-app.use('/public', express.static('public'));
+// // route for image upload
+// app.engine('html', mustacheExpress());
+// app.set('view engine', 'mustache');
+// app.use('/public', express.static('public'));
 
-// Routes
-app.get('/', function(req, res) {
-  res.render('index.html');
-});
+// // Routes
+// app.get('/', function(req, res) {
+//   res.render('index.html');
+// });
 
-app.listen(1337, function() {
-  console.log('Running on port 1337');
-});
-
+// app.listen(1337, function() {
+//   console.log('Running on port 1337');
+// });
