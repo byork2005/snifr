@@ -54,3 +54,4 @@ $(".submitBtn").on("click", function() {
     event.preventDefault();
     console.log(scores);
 });
+

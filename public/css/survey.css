@@ -31,10 +31,11 @@
 
 #container {
     height: 500px;
+    position: relative;
             /*overflow: scroll;*/
 }
 
-#submitSurvey {
+#nextPanel3 {
             background-color: blue;
             color: yellow;
             font-size: 20px;
@@ -46,4 +47,30 @@
 
 #survRowSurvQuestions {
     text-align: center;
+}
+
+.hiddenPanel {
+    visibility: hidden;
+}
+
+#surveyPageOne {
+    position: absolute;
+    display: block;
+    top: 0%;
+}
+
+#surveyPageTwo {
+    position: absolute;
+    display: block;
+    top: 0%;
+}
+
+#surveyPageThree {
+    position: absolute;
+    display: block;
+}
+
+#surveyPageFour {
+    position: absolute;
+    display: block;
 }
