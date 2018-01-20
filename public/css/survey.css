@@ -9,6 +9,10 @@
             text-align: center;
         }
 
+#survRowTwo {
+    margin: 2%;
+}
+
 #survRowFour {
             text-align: center;
             font-family: Comic Sans MS, cursive, sans-serif;
@@ -16,11 +20,18 @@
 
 #Description {
             width: 100%;
-            height: 150px;
+            height: 100px;
         }
 
+#next {
+    height: 40px;
+    width: 80px;
+    font-size: 20px;
+}
+
 #container {
-            overflow: scroll;
+    height: 500px;
+            /*overflow: scroll;*/
 }
 
 #submitSurvey {
@@ -31,4 +42,8 @@
             width: 100px;
             position: relative;
             top: -15%;
+}
+
+#survRowSurvQuestions {
+    text-align: center;
 }
