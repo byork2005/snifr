@@ -14,6 +14,8 @@ module.exports = function(sequelize, DataTypes) {
                 len: [1]
             }
         },
+        createdAt: Sequelize.DATE,
+        updatedAt: Sequelize.DATE
     });
 
     Communication.associate = function(models) {

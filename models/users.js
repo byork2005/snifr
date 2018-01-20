@@ -24,7 +24,9 @@ module.exports = function(sequelize, DataType) {
             validate: {
                 is: /^\d{5}$/
             }
-        }
+        },
+        createdAt: Sequelize.DATE,
+        updatedAt: Sequelize.DATE,
     });
 
     User.associate = function(models) {

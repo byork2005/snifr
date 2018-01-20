@@ -15,7 +15,9 @@ module.exports = function(sequelize, DataTypes) {
         fixed_pref: {
             type: DataTypes.BOOLEAN,
             allowNull: true
-        }
+        },
+        createdAt: Sequelize.DATE,
+        updatedAt: Sequelize.DATE
     });
 
     Filter.associate = function(models) {

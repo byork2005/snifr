@@ -70,6 +70,8 @@ module.exports = function(sequelize, DataTypes) {
             min: 1,
             max: 5
         },
+        createdAt: Sequelize.DATE,
+        updatedAt: Sequelize.DATE
     });
 
     Survey.associate = function(models) {

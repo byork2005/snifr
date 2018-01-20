@@ -48,7 +48,9 @@ module.exports = function(sequelize, DataTypes) {
             validate: {
                 len: [0,255]
             }
-        }
+        },
+        createdAt: Sequelize.DATE,
+        updatedAt: Sequelize.DATE
     });
     
     Dog.associate = function(models) {
