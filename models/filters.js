@@ -1,26 +1,28 @@
 module.exports = function(sequelize, DataTypes) {
-    var Search_filters = sequelize.define("Search_filters", {
+    var Filter = sequelize.define("Filter", {
         sex_pref: {
             type: DataTypes.STRING,  //female === true, male === false
-            allowNull: true,
+            allowNull: true
         },
         size_pref: {
             type: DataTypes.STRING,
-            allowNull: true,
+            allowNull: true
         },
         temperament_pref: {
             type: DataTypes.STRING,
-            allowNull: true,
+            allowNull: true
         },
         fixed_pref: {
             type: DataTypes.BOOLEAN,
-            allowNull: true,
+            allowNull: true
         }
     });
 
-    Search_filters.associate = function(models) {
-        Search_filters.belongsTo(models.Dog, {
+    Filter.associate = function(models) {
+        Filter.belongsTo(models.Dog, {
             onDelete: 'cascade'
         });
     };
+    
+    return Filter;
 }
