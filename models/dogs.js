@@ -68,6 +68,7 @@ module.exports = function(sequelize, DataTypes) {
     Dog.associate = function(models) {
         Dog.belongsTo(models.User);
         Dog.hasOne(models.Survey);
+        Dog.hasOne(models.Search_filters)
     };
 
     return Dog;

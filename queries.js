@@ -91,6 +91,14 @@ db.Survey.findOne({
     })
 })
 
+// Delete a Dog
+db.Dog.destory({  
+    where: { id: req.params.id}
+  })
+  .then(deletedPet => {
+    console.log(`Has the dog been deleted? 1 means yes, 0 means no: ${deletedPet}`);
+  });
+
 
 
 
