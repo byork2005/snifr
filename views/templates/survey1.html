@@ -85,5 +85,24 @@
     
         </div>
     </body>
-
+    <script>
+        $("#next").click(function(){
+            let name = $("#humanName").val().trim();
+            let zip = $("#zipCode").val().trim();
+            let email = $("#email").val().trim();
+            let password = $("#password").val().trim();
+            
+            $.post("/signup", {
+                name: name,
+                zip: zip,
+                email: email,
+                password: password
+            }).then(function(data){
+                console.log(data);
+                if (data.signup === "success"){
+                    window.location.replace('/survey2');
+                }
+            })
+        })
+    </script>
 </html>

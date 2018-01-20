@@ -94,6 +94,10 @@
           $("#loginPanelRowTwoColTwo").attr("id", "loginPanelEmailPassword");
         });
         
+        $("#LPbutJoin").click(function(){
+            window.location.replace('/survey1');
+        })
+        
         $("#LPbutLoginSubmit").click(function(){
             let email = $("#email").val().trim();
             $("#email").val("");

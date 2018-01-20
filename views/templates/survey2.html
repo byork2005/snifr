@@ -8,12 +8,13 @@
         <link rel="stylesheet" href="./css/style.css" type="text/css">
         <script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
             crossorigin="anonymous"></script>
-        <script src="../../js/app.js"></script>
-        <link rel="stylesheet" href="../../public/css/main.css" type="text/css">
-        <link rel="stylesheet" href="../../public/css/login.css" type="text/css">
-        <link rel="stylesheet" href="../../public/css/survey.css" type="text/css">
-        <link rel="stylesheet" href="../../public/css/profile.css" type="text/css">
-        <link rel="stylesheet" href="../../public/css/survey2.css" type="text/css">
+        <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.17.1/axios.js"></script>-->
+        <script src="./js/app.js"></script>
+        <link rel="stylesheet" href="./css/main.css" type="text/css">
+        <link rel="stylesheet" href="./css/login.css" type="text/css">
+        <link rel="stylesheet" href="./css/survey.css" type="text/css">
+        <link rel="stylesheet" href="./css/profile.css" type="text/css">
+        <link rel="stylesheet" href="./css/survey2.css" type="text/css">
 
     </head>
     <body>
@@ -28,7 +29,7 @@
         <div class="row" id="mainRow">
             <div class="col col-md-2" id="leftSide">
                 <div>
-                    <img class="img-circle" id="leftLogo" src="../../public/media/logo1.jpg">
+                    <img class="img-circle" id="leftLogo" src="./media/logo1.jpg">
                     
                 </div>
                 <div id="leftTxt">
@@ -138,5 +139,15 @@
     
         </div>
     </body>
-
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+            <script src="./js/app.js"></script>
+    <script>
+        $("#next").click(function(){
+            let name = $("#dogName").val().trim();
+            let breed = $("#breed").val().trim();
+            let age = parseInt($("#age").val().trim(), 10);
+            let sex = $("#sex").val();
+            let size = $("")
+        })
+    </script>
 </html>

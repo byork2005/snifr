@@ -4,6 +4,8 @@ var emailInput = "<input>";
 var passwordHeader = "<h1>Password</h>";
 var passwordInput = "<input>";
 
+var imageUrl = "";
+
 $( "#LPbut" ).click(function() {
   $("#loginPanelRowTwoColOne" ).empty();
   $("#loginPanelRowTwoColTwo" ).empty();
@@ -36,6 +38,8 @@ axios({
 }).then(function(res){
 console.log(res)
 console.log(res.data.url)
+imageUrl = res.data.secure_url;
+
 // imgPreview.src = res.data.secure_url;
 }).catch(function(err){
     console.error(err)

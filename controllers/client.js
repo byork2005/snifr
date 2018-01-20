@@ -27,6 +27,14 @@ router.get('/signin', function(req, res){
     res.render('signin', hbsObj);
 });
 
+router.get('/survey1', function(req, res){
+    res.sendfile('./views/templates/survey1.html');
+});
+
+router.get('/survey2', ensureAuth, function(req, res){
+    res.sendfile('./views/templates/survey2.html');
+})
+
 router.post('/signin',
             passport.authenticate('local-signin', {
                 failureRedirect: '/notAuth',
@@ -41,9 +49,14 @@ router.get('/signup', function(req, res){
 router.post('/signup',
             passport.authenticate('local-signup',
             {
-                failureRedirect: '/notAuth',
-                successRedirect: '/auth'
+                failureRedirect: '/signup/failure',
+                successRedirect: '/signup/success'
             }));
+
+router.get('/signup/:worked', ensureAuth, function(req, res){
+    let status = req.params.worked
+    res.json({signup: status});
+})
            
 router.get('/logout',function(req, res){
     req.session.destroy(function(err){
