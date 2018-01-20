@@ -6,7 +6,7 @@ module.exports = function(passport, user) {
     
     passport.use('local-signup', new LocalStrategy(
         {
-            usernameField: 'username',
+            usernameField: 'email',
             passwordField: 'password',
             passReqToCallback: true
         },
@@ -56,6 +56,8 @@ module.exports = function(passport, user) {
         },
         
         function(req, username, password, done){
+            console.log("!!!!!!!!")
+            console.log(username);
             var User = user;
             var isValidPassword = function(userpass, password){
                 //return bCrypt.compareSync(password, userpass);

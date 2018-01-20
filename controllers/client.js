@@ -8,7 +8,7 @@ var ensureAuth = function(req, res, next){
         console.log("authed");
         return next();
     } else {
-        res.redirect('/notAuth');
+        res.redirect('/');
     }
 };
 
@@ -17,6 +17,10 @@ router.get('/', function(req, res){
     //res.render('index', hbsObj);
     res.sendfile('./views/templates/login.html')
 });
+
+router.get('/profile', ensureAuth, function(req, res){
+    res.sendfile('./views/templates/profile.html')
+})
 
 router.get('/signin', function(req, res){
     var hbsObj = {};
@@ -50,7 +54,8 @@ router.get('/logout',function(req, res){
             
 router.get('/notAuth', function(req, res){
     var hbsObj = {};
-    res.render('notAuth', hbsObj);
+    //res.render('notAuth', hbsObj);
+    res.json({authorized: "NO"})
 });
 
 router.get('/auth',
@@ -59,7 +64,8 @@ router.get('/auth',
                 console.log("render auth");
                 console.log(req.user);
                 var hbsObj = {};
-                res.render('auth', req.user);
+                //res.render('auth', req.user);
+                res.json({authorized: "YES"})
             });
 
 module.exports = router;

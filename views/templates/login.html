@@ -66,7 +66,7 @@
                             </div>
                         </div>
                         <div class="row">
-                            <button type="button" class="btn btn-success hiddenBtn" id="LPbutLoginSubmit">Login</button>
+                            <button type="submit" class="btn btn-success hiddenBtn" id="LPbutLoginSubmit">Login</button>
                         </div>
                     </div>
                 </div>  
@@ -79,10 +79,10 @@
 <!-- To be taken out once the js file is working -->
     <script>
         var emailHeader = "<h1>Email</h>";
-        var emailInput = "<input>";
+        var emailInput = '<input type="text" id="email" required>';
         var passwordHeader = "<h1>Password</h>";
-        var passwordInput = "<input>";
-        var loginSubmit = "<button>";
+        var passwordInput = '<input type="password" id="password" required>';
+        var loginSubmit = '<button type="submit">';
 
         $( "#LPbutLogin" ).click(function() {
           $("#loginPanelRowTwoColOne" ).empty();
@@ -92,6 +92,24 @@
           $("#LPbutLoginSubmit").removeClass("hiddenBtn");
           $("#loginPanelRowTwoColOne").attr("id", "loginPanelEmailLogin");
           $("#loginPanelRowTwoColTwo").attr("id", "loginPanelEmailPassword");
+        });
+        
+        $("#LPbutLoginSubmit").click(function(){
+            let email = $("#email").val().trim();
+            $("#email").val("");
+            let password = $("#password").val().trim();
+            console.log(email);
+            console.log(password);
+            
+            $.post("/signin", {
+                username: email,
+                password: password
+            }).then(data => {
+                console.log(data);
+                if (data.authorized === "YES"){
+                    window.location.replace('/profile');
+                }
+            });
         });
     </script>
 
