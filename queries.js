@@ -16,10 +16,45 @@ db.Survey.findAll({
                 [Op.lt]: req.params.size,
             },
             sex: req.params.sex,
-            neutured_spayed: req.params.neutured_spayed
+            fixed: req.params.fixed
+        }
+    }],
+    attributes: ['a.id'], Survey, as: 'yourDog',
+    attributes: ['b.id'], Survey, as: 'matchDog',
+    where: {
+        attributes: [+Math.abs(a.q1-b.q1)+Math.abs(a.q2-b.q2)+Math.abs(a.q3-b.q3)
+            +Math.abs(a.q4-b.q4)+Math.abs(a.q5-b.q5)+Math.abs(a.q6-b.q6)+Math.abs(a.q7-b.q7)
+            +Math.abs(a.q8-b.q8)+Math.abs(a.q9-b.q9)+Math.abs(a.q10-b.q10)], as: 'scoreDiff'
+       
+        
+    }
+    
+})
+
+db.Dog.findAll({
+    where: {
+        temperament: req.params.temperament,
+        size: {
+            [Op.lt]: req.params.size,
+        },
+        sex: req.params.sex,
+        neutured_spayed: req.params.neutured_spayed
+    },
+    include: [{
+        model: Survey,
+        where: {
+            
         }
     }]
 })
+
+select a.id mainThing, 
+b.id comparingThing, 
+abs(a.q1 - b.q1) + abs(a.q2 - b.q2) + abs(a.q3 - b.q3)+ abs(a.q4 - b.q4)+ abs(a.q5 - b.q5)+ abs(a.q6 - b.q6)+ abs(a.q7 - b.q7)+ abs(a.q8 - b.q8)+ abs(a.q9 - b.q9)+ abs(a.q10 - b.q10) scorediff
+from surveys as a
+inner join surveys as b on a.id != b.id
+WHERE a.id =4
+order by scorediff asc
 
 // Get all the survey results
 db.Survey.findAll({})
