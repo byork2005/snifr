@@ -100,7 +100,7 @@
             }).then(function(data){
                 console.log(data);
                 if (data.signup === "success"){
-                    window.location.replace('/survey2');
+                    window.location.replace(`/user/${data.user}/dog`);
                 }
             })
         })

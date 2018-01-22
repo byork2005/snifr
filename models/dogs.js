@@ -14,6 +14,17 @@ module.exports = function(sequelize, DataTypes) {
                 len: [1]
             }
         },
+        age: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+            validate: {
+                min: 0
+            }
+        },
+        temperament: {
+            type: DataTypes.STRING,
+            allowNull: false
+        },
         sex: {
             type: DataTypes.BOOLEAN, //true === female, false === male
             allowNull: false

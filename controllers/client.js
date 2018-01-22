@@ -1,6 +1,8 @@
 var express = require('express');
 var router = express.Router();
 var passport = require('passport');
+var models = require('../models')
+
 
 var ensureAuth = function(req, res, next){
     console.log("authing");
@@ -27,12 +29,38 @@ router.get('/signin', function(req, res){
     res.render('signin', hbsObj);
 });
 
-router.get('/survey1', function(req, res){
+router.get('/user', function(req, res){
     res.sendfile('./views/templates/survey1.html');
 });
 
-router.get('/survey2', ensureAuth, function(req, res){
+router.get('/user/:userId/dog', ensureAuth, function(req, res){
     res.sendfile('./views/templates/survey2.html');
+});
+
+router.post('/user/:userId/dog', ensureAuth, function(req, res){
+    console.log(req.body)
+    let newDog = req.body;
+    newDog["UserId"] = req.user.id;
+    console.log(newDog);
+    models.Dog.create(newDog).then(resp => {
+        console.log(resp.get());
+        res.json({status: "success", dogId: resp.id});
+    });
+})
+
+router.get('/user/:userId/dog/:dogId/survey', function(req, res){
+    res.sendfile('./views/templates/survey3.html');
+});
+
+router.post('/user/:userId/dog/:dogId/survey', function(req, res){
+    let newSurvey = req.body;
+    newSurvey["DogId"] = req.params.dogId;
+    models.Survey.create(newSurvey).then(resp => {
+        res.json({status: "success",
+                  userId: req.params.userId,
+                  dogId: req.params.dogId
+        });
+    })
 })
 
 router.post('/signin',
@@ -55,7 +83,7 @@ router.post('/signup',
 
 router.get('/signup/:worked', ensureAuth, function(req, res){
     let status = req.params.worked
-    res.json({signup: status});
+    res.json({signup: status, user: req.user.id});
 })
            
 router.get('/logout',function(req, res){
