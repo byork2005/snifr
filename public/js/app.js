@@ -1,9 +1,9 @@
 //login page js
 var showLogin = function(){
     var emailHeader = "<h1>Email</h>";
-    var emailInput = "<input>";
+    var emailInput = '<input type="text" id="email" required>';
     var passwordHeader = "<h1>Password</h>";
-    var passwordInput = "<input>";
+    var passwordInput = '<input type="password" id="password" required>';
     
     $("#loginPanelRowTwoColOne" ).empty();
     $("#loginPanelRowTwoColTwo" ).empty();
@@ -12,16 +12,57 @@ var showLogin = function(){
     $("#loginPanelRowTwoColOne").attr("id", "loginPanelEmailLogin");
     $("#loginPanelRowTwoColTwo").attr("id", "loginPanelEmailPassword");
     $("#LPbutLoginSubmit").removeClass("hiddenBtn");
-
-
 }
 
+var submitLogin = function(){
+     let email = $("#email").val().trim();
+            $("#email").val("");
+            let password = $("#password").val().trim();
+            console.log(email);
+            console.log(password);
+            
+            $.post("/signin", {
+                username: email,
+                password: password
+            }).then(data => {
+                console.log(data);
+                if (data.authorized === "YES"){
+                    window.location.replace('/profile');
+                }
+            });
+};
+
+var gotoSignup = function(){
+    window.location.replace('/signup1');
+}
+
+var signup = function(){
+    let name = $("#humanName").val().trim();
+            let zip = $("#zipCode").val().trim();
+            let email = $("#email").val().trim();
+            let password = $("#password").val().trim();
+            
+            $.post("/signup", {
+                name: name,
+                zip: zip,
+                email: email,
+                password: password
+            }).then(function(data){
+                console.log(data);
+                if (data.signup === "success"){
+                    window.location.replace('/signup2');
+                }
+            })
+}
 
 
 
 $(document).ready(function(){
 
-    $( "#LPbutLogin" ).on("click", showLogin)
+    $( "#LPbutLogin" ).on("click", showLogin);
+    $("#LPbutLoginSubmit").click(submitLogin);
+    $("#LPbutJoin").click(gotoSignup);
+    $("#submitUser").click(signup);
 
     var CLOUDINARY_URL = 'https://api.cloudinary.com/v1_1/dakke3tr6/upload';
     var CLOUDINARY_UPLOAD_PRESET = 'i2fwawg4'

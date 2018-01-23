@@ -1,9 +1,9 @@
 {
   "development": {
-    "username": "snifrdev",
-    "password": "Iz4OA~!snolU",
-    "database": "snifrdev",
-    "host": "den1.mysql1.gear.host",
+    "username": "fultonium",
+    "password": "",
+    "database": "snifr_dev",
+    "host": "localhost",
     "dialect": "mysql"
   },
   "test": {
