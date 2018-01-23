@@ -61,7 +61,11 @@ router.get('/user/:userId/dog/:dogId/filter', function(req, res){
 });
 
 router.post('/user/:userId/dog/:dogId/filter', function(req, res){
-    
+    let newFilter = req.body;
+    newFilter["DogId"] = req.params.dogId;
+    models.Filter.create(newFilter).then(resp => {
+        res.json({status: "success"});
+    });
 });
 
 router.get('/home', function(req, res){

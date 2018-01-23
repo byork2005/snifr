@@ -82,6 +82,50 @@ var addDog = function(){
     })
 }
 
+var addSurvey = function(){
+    let questions = Array.from($(".question"));
+    var data = {};
+    questions.forEach(q => {
+        data[q.id] = parseInt($(q).val());
+        console.log(q.id)
+        console.log($(q).val());
+    });
+    console.log(data);
+    
+    $.post(window.location.href, data).then(resp => {
+        console.log(resp);
+        let href = window.location.href;
+        href = href.replace("survey", "filter");
+        window.location.replace(href);
+    })
+}
+
+var addFilter = function(){
+    let sex = $("#sex").val();
+    let fixed = $("#fixed").val();
+    let size = $("#size").val();
+    let temperament = $("temperament").val();
+    
+    if (sex === "NA"){
+        sex = null;
+    }
+    if (fixed === "NA"){
+        sex = null;
+    }
+    if (size === "NA"){
+        size = null;
+    }
+    if (temperament === "NA"){
+        temperament = null;
+    }
+    data = {sex, fixed, size, temperament}
+    
+    $.post(window.location.href, data).then(resp => {
+        console.log(resp);
+        window.location.replace('/profile');
+    })
+}
+
 $(document).ready(function(){
 
     $( "#LPbutLogin" ).on("click", showLogin);
@@ -89,6 +133,8 @@ $(document).ready(function(){
     $("#LPbutJoin").click(gotoSignup);
     $("#submitUser").click(signup);
     $("#submitDog").click(addDog);
+    $("#submitSurvey").click(addSurvey);
+    $("#submitFilter").click(addFilter);
 
     var CLOUDINARY_URL = 'https://api.cloudinary.com/v1_1/dakke3tr6/upload';
     var CLOUDINARY_UPLOAD_PRESET = 'i2fwawg4'

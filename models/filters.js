@@ -1,7 +1,7 @@
 module.exports = function(sequelize, DataTypes) {
     var Filter = sequelize.define("Filter", {
         sex_pref: {
-            type: DataTypes.STRING,  //female === true, male === false
+            type: DataTypes.BOOLEAN,  //female === true, male === false
             allowNull: true
         },
         size_pref: {
