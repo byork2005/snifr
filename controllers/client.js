@@ -17,9 +17,11 @@ var ensureAuth = function(req, res, next){
 //routes for the websites, this is all tenative
 //removed the ensureAuth to get working
 router.get('/', function(req, res){
-    var hbsObj = {status: "success"};
+    var hbsObj = {status: "success",
+                showAbout: true};
     //res.render('index', hbsObj);
-    res.render('login');
+
+    res.render('login', hbsObj);
 });
 
 router.get('/user', function(req, res){

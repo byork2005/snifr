@@ -1,4 +1,4 @@
-//login page js
+
 var showLogin = function(){
     var emailHeader = "<h1>Email</h>";
     var emailInput = '<input type="text" id="email" required>';
@@ -108,6 +108,7 @@ var addFilter = function(){
     
     if (sex === "NA"){
         sex = null;
+
     }
     if (fixed === "NA"){
         sex = null;

@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Kavivanar|Risque');
+
 #header {
             background-color: blue;
             border-top: 5px outset  #00008B;
@@ -11,6 +13,7 @@
         .img-circle {
             border-radius: 50%;
             border: 5px solid #00008B;
+            background-color: white;
         }
 
         #title {
@@ -20,15 +23,20 @@
             left: 45%;
             height: 117px;
             width: 210px;
-            background-color: #00008B;
+            background-color: white;
+            border: 5px solid #00008B;
             border-radius: 0px 0px 50px 50px;
         }
 
         #title h1 {
-            font-family: Comic Sans MS, cursive, sans-serif;
+            font-family: 'Kavivanar', cursive;;
             font-weight: bold;
             font-size: 72px;
             color: yellow; 
+        }
+
+        #headerImage{
+            height: 120px;
         }
 
         #leftLogo {
@@ -42,12 +50,18 @@
         }
 
         #leftTxt {
-            font-family: Comic Sans MS, cursive, sans-serif;
+            font-family: 'Kavivanar', cursive;
             position: absolute;
             top: 13%;
             text-align: center;
             margin-right: 15px;
             color: yellow;
+        }
+
+        #aboutInfo {
+            color: yellow;
+            margin: 2%;
+            font-family: 'Kavivanar', cursive;
         }
 
         #searchBox {
