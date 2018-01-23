@@ -13,6 +13,9 @@ var showLogin = function(){
     $("#loginPanelRowTwoColTwo").attr("id", "loginPanelEmailPassword");
     $("#LPbutLoginSubmit").removeClass("hiddenBtn");
 }
+var aboutShow = function(){
+        $("#aboutInfo").removeClass("hiddenBtn");
+};
 
 var submitLogin = function(){
      let email = $("#email").val().trim();
@@ -129,6 +132,7 @@ var addFilter = function(){
 
 $(document).ready(function(){
 
+    $("#about").on("click", aboutShow);
     $( "#LPbutLogin" ).on("click", showLogin);
     $("#LPbutLoginSubmit").click(submitLogin);
     $("#LPbutJoin").click(gotoSignup);
