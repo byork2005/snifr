@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var passport = require('passport');
+var models = require('../models')
 
 var ensureAuth = function(req, res, next){
     console.log("authing");
@@ -18,23 +19,53 @@ var ensureAuth = function(req, res, next){
 router.get('/', function(req, res){
     var hbsObj = {status: "success"};
     //res.render('index', hbsObj);
-    res.render('login')
+    res.render('login');
 });
 
-router.get('/signup1', function(req, res){
+router.get('/user', function(req, res){
     res.render('signupHumanInfo');
 });
 
-router.get('/signup2', function(req, res){
+router.get('/user/:userId/dog', function(req, res){
     res.render('signupDogInfo');
 });
 
-router.get('/signup3', function(req, res){
+router.post('/user/:userId/dog', function(req, res){
+    console.log(req.body)
+    let newDog = req.body;
+    newDog["UserId"] = req.user.id;
+    console.log(newDog);
+    models.Dog.create(newDog).then(resp => {
+        console.log(resp.get());
+        res.json({status: "success", dogId: resp.id});
+    });
+});
+
+router.get('/user/:userId/dog/:dogId/survey', function(req, res){
     res.render('signupSurvey');
 });
 
-router.get('/signup4', function(req, res){
+router.post('/user/:userId/dog/:dogId/survey', function(req, res){
+    let newSurvey = req.body;
+    newSurvey["DogId"] = req.params.dogId;
+    models.Survey.create(newSurvey).then(resp => {
+        res.json({status: "success",
+                  userId: req.params.userId,
+                  dogId: req.params.dogId
+        });
+    })
+});
+
+router.get('/user/:userId/dog/:dogId/filter', function(req, res){
     res.render('signupFilters');
+});
+
+router.post('/user/:userId/dog/:dogId/filter', function(req, res){
+    let newFilter = req.body;
+    newFilter["DogId"] = req.params.dogId;
+    models.Filter.create(newFilter).then(resp => {
+        res.json({status: "success"});
+    });
 });
 
 router.get('/home', function(req, res){
@@ -89,7 +120,7 @@ router.post('/signup',
 
 router.get('/signup/:worked', ensureAuth, function(req, res){
     let status = req.params.worked
-    res.json({signup: status});
+    res.json({signup: status, user: req.user.id});
 })
            
 router.get('/logout',function(req, res){
