@@ -33,7 +33,7 @@ var submitLogin = function(){
 };
 
 var gotoSignup = function(){
-    window.location.replace('/signup1');
+    window.location.replace('/user');
 }
 
 var signup = function(){
@@ -50,12 +50,37 @@ var signup = function(){
             }).then(function(data){
                 console.log(data);
                 if (data.signup === "success"){
-                    window.location.replace('/signup2');
+                    window.location.replace(`/user/${data.user}/dog`);
                 }
             })
 }
 
-
+var addDog = function(){
+    let name = $("#dogName").val().trim();
+    let breed = $("#breed").val().trim();
+    let age = parseInt($("#age").val().trim(), 10);
+    let sex = $("#sex").val();
+    let size = $("#size").val();
+    let temperament = $("#temperament").val();
+    let fixed = $("#fixed").val();
+    let photo = "temp url";
+    let description = $("#description").val().trim();
+    
+    data = {
+        name, breed, age, sex, size,
+        temperament, fixed, photo, description
+    }
+    
+    console.log(data);
+    let href = window.location.href;
+    $.post(href, data).then(resp => {
+        console.log(resp)
+        let dogId = resp.dogId;
+        console.log(dogId)
+        href += `/${dogId}/survey`
+        window.location.replace(href);
+    })
+}
 
 $(document).ready(function(){
 
@@ -63,6 +88,7 @@ $(document).ready(function(){
     $("#LPbutLoginSubmit").click(submitLogin);
     $("#LPbutJoin").click(gotoSignup);
     $("#submitUser").click(signup);
+    $("#submitDog").click(addDog);
 
     var CLOUDINARY_URL = 'https://api.cloudinary.com/v1_1/dakke3tr6/upload';
     var CLOUDINARY_UPLOAD_PRESET = 'i2fwawg4'
