@@ -6,13 +6,17 @@ var passwordInput = "<input>";
 
 var imageUrl = "";
 
-$( "#LPbut" ).click(function() {
+$( "#LPbutLogin" ).click(function() {
   $("#loginPanelRowTwoColOne" ).empty();
   $("#loginPanelRowTwoColTwo" ).empty();
   $("#loginPanelRowTwoColOne").append(emailHeader, emailInput);
   $("#loginPanelRowTwoColTwo").append(passwordHeader, passwordInput);
   $("#loginPanelRowTwoColOne").attr("id", "loginPanelEmailLogin");
   $("#loginPanelRowTwoColTwo").attr("id", "loginPanelEmailPassword");
+})
+
+$("#about").click(function() {
+    $("#aboutInfo").removeClass("hiddenBtn");
 })
 
 var CLOUDINARY_URL = 'https://api.cloudinary.com/v1_1/dakke3tr6/upload';
