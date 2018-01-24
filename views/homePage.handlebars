@@ -2,10 +2,10 @@
 				{{#each Dog}}
                 	<div class="row" id="yourDogs">
                 		<div class="col col-sm-2">
-	                		<img src=" " id="dogImg">
+	                		<img src="{{this.photo}}" id="dogImg">
 	                	</div>
 	                	<div class="col col-sm-6">
-							<img class="homeDog" id="dogImg" src="{{this.photo}}">
+							
 	                		<h2 id="dogName">{{this.name}}</h2>
 	                		<hr>
 	                		<h3 id="dogHuman">Human's Name: </h3>

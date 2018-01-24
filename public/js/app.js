@@ -1,3 +1,4 @@
+var imageUrl = "";
 
 var showLogin = function(){
     var emailHeader = "<h1>Email</h>";
@@ -180,4 +181,3 @@ $(document).ready(function(){
     //     event.preventDefault();
     //     console.log(scores);
     });
-});

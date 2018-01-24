@@ -90,12 +90,17 @@ router.post('/user/:userId/dog/:dogId/filter', function (req, res) {
 });
 
 router.get('/home/:userId', function (req, res) {
-    models.Dog.findAll({
+    models.User.findOne({
         where: {
             id: req.params.userId
-        }
+        },
+        include: [models.Dog]
     }).then(function (data) {
-        res.render('homePage', { Dog: data });
+        // console.log(data);
+        //let userInfo = data.get();
+        // console.log(data)
+        // console.log(data.Dogs)
+        res.render('homePage', { Dog: data.Dogs });
     });
 });
 
