@@ -3,9 +3,6 @@ var router = express.Router();
 var passport = require('passport');
 var models = require('../models');
 var Sequelize = require('sequelize');
-var names = [];
-var photos = [];
-var dogId = [];
 
 var sequelize = new Sequelize("snifrdev", "snifrdev", "Iz4OA~!snolU", {
     host: "den1.mysql1.gear.host",
