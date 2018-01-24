@@ -108,7 +108,7 @@ router.post('/user/:userId/dog/:dogId/filter', function (req, res) {
     let newFilter = req.body;
     newFilter["DogId"] = req.params.dogId;
     models.Filter.create(newFilter).then(resp => {
-        res.json({ status: "success" });
+        res.json({ status: "success", dogId: req.params.dogId });
     });
 });
 
