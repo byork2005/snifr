@@ -128,7 +128,7 @@ var addFilter = function(){
     
     $.post(window.location.href, data).then(resp => {
         console.log(resp);
-        window.location.replace(`/profile/${dogId}`);
+        window.location.replace(`/profile/${resp.dogId}`);
     })
 }
 
