@@ -106,6 +106,26 @@ router.get('/home', ensureAuth, function (req, res) {
 
 router.get('/matches/:userId', function (req, res) {
     userId = req.params.userId;
+    let prefs;
+    function getFilters(dog_id) {
+        db.filter.findOne({
+            where: {DogId: dog_id}
+        }).then(function(data) {
+            console.log(data)
+            // Once we have a data obj, we can use the data properties to set the preferences to vars.
+        })
+    }
+    // Do we need to change userId to dogID? Thinking is the user doesn't have the matches, the dog does.
+    // Plus we need the dogId to get the filter preferences.
+
+    // Lastly, when we make the query, we can include another var that gathers all the total prefs that apply.
+    // we can add an && !== statement to remove any keys we don't want looped through.
+    for(let key in data) {
+        if(data.hasOwnProperty(key)) {
+            prefs += `${key} = ${data[key]},`
+        }
+    }
+
     matchQuery = "select a.id as yourDog, b.id as matchDog, d.name as dogName, d.photo as dogPhoto, d.breed as dogBreed, abs(a.q1 - b.q1) + abs(a.q2 - b.q2) + abs(a.q3 - b.q3)+ abs(a.q4 - b.q4)+ abs(a.q5 - b.q5)+ abs(a.q6 - b.q6)+ abs(a.q7 - b.q7)+ abs(a.q8 - b.q8)+ abs(a.q9 - b.q9)+ abs(a.q10 - b.q10) as scorediff from surveys a inner join surveys b on b.id != a.id inner join dogs d on d.id = b.DogId where a.id=" + userId + " order by scorediff asc";
     console.log(matchQuery);
     sequelize.query(matchQuery, req.params.userId).spread((results, metadata) => {
@@ -115,6 +135,7 @@ router.get('/matches/:userId', function (req, res) {
         //     // var math = 100-((diff/40)*100);
         //     // console.log(math);
         // console.log("all done");
+        console.log(results);
         res.render('matchPage', { Match: results });
         // console.log(results);
     });
