@@ -3,6 +3,7 @@ var router = express.Router();
 var passport = require('passport');
 var models = require('../models');
 var Sequelize = require('sequelize');
+var user;
 
 var sequelize = new Sequelize("snifrdev", "snifrdev", "Iz4OA~!snolU", {
     host: "den1.mysql1.gear.host",
@@ -99,9 +100,9 @@ router.get('/home/:userId', function (req, res) {
 });
 
 router.get('/matches/:userId', function (req, res) {
-    user = req.params.userId;
-    matchQuery = "select a.id as yourDog, b.id as matchDog, d.name as dogName, d.photo as dogPhoto, d.breed as dogBreed, abs(a.q1 - b.q1) + abs(a.q2 - b.q2) + abs(a.q3 - b.q3)+ abs(a.q4 - b.q4)+ abs(a.q5 - b.q5)+ abs(a.q6 - b.q6)+ abs(a.q7 - b.q7)+ abs(a.q8 - b.q8)+ abs(a.q9 - b.q9)+ abs(a.q10 - b.q10) as scorediff from surveys a inner join surveys b on b.id != a.id inner join dogs d on d.id = b.DogId where a.id=" + user + " order by scorediff asc";
-    // console.log(matchQuery);
+    userId = req.params.userId;
+    matchQuery = "select a.id as yourDog, b.id as matchDog, d.name as dogName, d.photo as dogPhoto, d.breed as dogBreed, abs(a.q1 - b.q1) + abs(a.q2 - b.q2) + abs(a.q3 - b.q3)+ abs(a.q4 - b.q4)+ abs(a.q5 - b.q5)+ abs(a.q6 - b.q6)+ abs(a.q7 - b.q7)+ abs(a.q8 - b.q8)+ abs(a.q9 - b.q9)+ abs(a.q10 - b.q10) as scorediff from surveys a inner join surveys b on b.id != a.id inner join dogs d on d.id = b.DogId where a.id=" + userId + " order by scorediff asc";
+    console.log(matchQuery);
     sequelize.query(matchQuery, req.params.userId).spread((results, metadata) => {
         //       //math for % of match - wasn't able to push to page but works  
         //     // var diff = results[i].scorediff;
