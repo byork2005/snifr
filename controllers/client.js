@@ -17,7 +17,27 @@ var sequelize = new Sequelize("snifrdev", "snifrdev", "Iz4OA~!snolU", {
 
 });
 
-
+var parseTemp = function(temp){
+    let printTemp = "";
+    switch(temp){
+        case "less25":
+            printTemp = "Under 25lbs";
+            break;
+        case "less50":
+            printTemp = "Under 50lbs";
+            break;
+        case "less75":
+            printTemp = "Under 75lbs";
+            break;
+        case "less100":
+            printTemp = "Under 100lbs";
+            break;
+        case "over100":
+            printTemp = "Over 100lbs";
+            break;
+    }
+    return printTemp;
+}
 
 var ensureAuth = function (req, res, next) {
     console.log("authing");
@@ -127,6 +147,7 @@ router.get('/profile/:userId', function (req, res) {
             id: req.params.userId
         }
     }).then(function (data) {
+        data.temperament = parseTemp(data.temperament);
         res.render('profile', { Profile: data });
     });
 });
