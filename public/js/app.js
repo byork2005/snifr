@@ -31,7 +31,7 @@ var submitLogin = function(){
             }).then(data => {
                 console.log(data);
                 if (data.authorized === "YES"){
-                    window.location.replace(`/home/${data.userId}`);
+                    window.location.replace('/home');
                 }
             });
 };
@@ -67,7 +67,8 @@ var addDog = function(){
     let size = $("#size").val();
     let temperament = $("#temperament").val();
     let fixed = $("#fixed").val();
-    let photo = "/tempurl";
+    //let photo = "/tempurl";
+    let photo = imageUrl;
     let description = $("#description").val().trim();
     
     data = {

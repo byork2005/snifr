@@ -89,10 +89,10 @@ router.post('/user/:userId/dog/:dogId/filter', function (req, res) {
     });
 });
 
-router.get('/home/:userId', function (req, res) {
+router.get('/home', ensureAuth, function (req, res) {
     models.User.findOne({
         where: {
-            id: req.params.userId
+            id: req.user.id
         },
         include: [models.Dog]
     }).then(function (data) {
@@ -194,7 +194,7 @@ router.get('/auth',
         console.log(req.user);
         var hbsObj = {};
         //res.render('auth', req.user);
-        res.json({ authorized: "YES", userId: req.user.id })
+        res.json({ authorized: "YES" })
     });
 
 module.exports = router;
