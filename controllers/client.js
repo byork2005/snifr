@@ -18,6 +18,9 @@ var sequelize = new Sequelize("snifrdev", "snifrdev", "Iz4OA~!snolU", {
 });
 
 var parseTemp = function(temp){
+    console.log("++++++++");
+    console.log(temp);
+    console.log("++++++++")
     let printTemp = "";
     switch(temp){
         case "less25":
@@ -147,7 +150,11 @@ router.get('/profile/:userId', function (req, res) {
             id: req.params.userId
         }
     }).then(function (data) {
-        data.temperament = parseTemp(data.temperament);
+        data[0].size = parseTemp(data[0].size);
+        let temp = data[0].temperament.split("");
+        temp[0] = temp[0].toUpperCase();
+        data[0].temperament = temp.join("");
+        console.log(data);
         res.render('profile', { Profile: data });
     });
 });
