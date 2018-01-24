@@ -48,6 +48,10 @@ module.exports = function(sequelize, DataTypes) {
             validate: {
                 len: [0,255]
             }
+        },
+        temperament: {
+            type: DataTypes.STRING,
+            allowNull: false
         }
     });
     
