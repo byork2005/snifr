@@ -194,7 +194,7 @@ router.get('/auth',
         console.log(req.user);
         var hbsObj = {};
         //res.render('auth', req.user);
-        res.json({ authorized: "YES" })
+        res.json({ authorized: "YES", userId: req.user.id })
     });
 
 module.exports = router;
