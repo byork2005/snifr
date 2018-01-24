@@ -1,7 +1,22 @@
 var express = require('express');
 var router = express.Router();
 var passport = require('passport');
-var models = require('../models')
+var models = require('../models');
+var Sequelize = require('sequelize');
+
+var sequelize = new Sequelize("snifrdev", "snifrdev", "Iz4OA~!snolU", {
+    host: "den1.mysql1.gear.host",
+    dialect: "mysql",
+    logging: function () { },
+    pool: {
+      max: 5,
+      min: 0,
+      idle: 10000
+    },
+  
+  });
+  
+
 
 var ensureAuth = function(req, res, next){
     console.log("authing");
@@ -70,17 +85,41 @@ router.post('/user/:userId/dog/:dogId/filter', function(req, res){
     });
 });
 
-router.get('/home', function(req, res){
-    res.render('homePage');
+router.get('/home/:userId', function(req, res){
+    models.Dog.findAll({
+        where:{
+            id: req.params.userId
+        }
+    }).then(function(data){
+    res.render('homePage', {Dog: data});
+});
 });
 
-router.get('/matches', function(req, res){
-    res.render('matchPage');
+router.get('/matches/:userId', function(req, res){
+    user = req.params.userId;
+    matchQuery = "SELECT a.id yourDog,b.id matchDog, abs(a.q1 - b.q1) + abs(a.q2 - b.q2) + abs(a.q3 - b.q3)+ abs(a.q4 - b.q4)+ abs(a.q5 - b.q5)+ abs(a.q6 - b.q6)+ abs(a.q7 - b.q7)+ abs(a.q8 - b.q8)+ abs(a.q9 - b.q9)+ abs(a.q10 - b.q10) scorediff from surveys as a inner join surveys as b on a.id != b.id WHERE a.id=" + user + " order by scorediff asc",
+    // console.log(matchQuery);
+    sequelize.query(matchQuery, req.params.userId).spread((results, metadata) => {
+          res.render('matchPage', {Match: results} );
+          for (i = 0; i < results.length; i++) {  
+            var diff = results[i].scorediff;
+            console.log(diff)
+            var math = 100-((diff/40)*100);
+            console.log(math);
+            };
+            console.log("all done");
+        });
 });
 
-router.get('/profile', function(req, res){
-    res.render('profile')
-})
+router.get('/profile/:userId', function(req, res){
+    models.Dog.findAll({
+        where:{
+            id: req.params.userId
+        }
+    }).then(function(data){
+    res.render('profile', {Profile: data});
+});
+});
 
 router.get('/barks', function(req, res){
     res.render('barksPage')
