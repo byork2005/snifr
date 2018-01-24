@@ -52,6 +52,13 @@ module.exports = function(sequelize, DataTypes) {
         temperament: {
             type: DataTypes.STRING,
             allowNull: false
+        },
+        age: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+            validate: {
+                min: 0
+            }
         }
     });
     
