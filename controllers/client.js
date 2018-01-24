@@ -96,10 +96,10 @@ router.get('/home/:userId', function (req, res) {
         },
         include: [models.Dog]
     }).then(function (data) {
-        // console.log(data);
-        //let userInfo = data.get();
-        // console.log(data)
-        // console.log(data.Dogs)
+        console.log(data);
+        let userInfo = data.get();
+        console.log(data)
+        console.log(data.Dogs)
         res.render('homePage', { Dog: data.Dogs });
     });
 });
