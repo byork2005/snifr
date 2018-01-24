@@ -1,13 +1,14 @@
 <div id="mainViewWindow">
+    {{#each Profile}}
                     <div class="container" id="profileFull">
                         <div class="row">
                             <div class="col col-sm-5" id="profileImgCol">
                                 <div class="row">
                                     <div class="row" id="profileImgRow">
                                         <div class="row" id="profileName">
-                                            <h2>Ida Bear</h2>      
+                                            <h2>{{this.name}}</h2>      
                                         </div>
-                                        <img id="profileImg" src="../../public/media/imgExample.jpg">
+                                        <img id="profileImg" src="{{this.photo}}"">
                                     </div>
                                     <div class="row" id="sniffGrowlRow">
                                         <div class="col col-sm-5">
@@ -30,16 +31,16 @@
                                     <div class="row" id="profileBasicInfoRow2">
                                         
                                         <div class="col col-sm-5" id="profileBasicInfoCol1">
-                                            <h4 id="breed">Breed: </h4>
-                                            <h4 id="sex">Sex: </h4>
-                                            <h4 id="size">Size: </h4>
+                                            <h4 id="breed">Breed:{{this.breed}} </h4>
+                                            <h4 id="sex">Sex:{{#if this.sex}} Female{{else}} Male{{/if}} </h4>
+                                            <h4 id="size">Size:{{this.size}}</h4>
                                             
                                         </div>
                                         <!-- <div class="col col-sm-1"></div> -->
                                         <div class="col col-sm-5" id="profileBasicInfoCol2">
-                                            <h4 id="age">Age: </h4>
-                                            <h4 id="fixed">Fixed: </h4>
-                                            <h4 id="temperament">Temperament: </h4>
+                                            <h4 id="age">Age:{{this.age}} </h4>
+                                            <h4 id="fixed">Fixed:{{#if this.fixed}} Fixed {{else}} Not Fixed {{/if}} </h4>
+                                            <h4 id="temperament">Temperament:{{this.temperament}} </h4>
                                         </div>
                                     </div> 
                                     <div class="row" id="profileBasicInfoRow3">
@@ -51,7 +52,7 @@
                                         <h2>Description</h2>
                                     </div>
                                     <div class="row" id="profileDescriptionBody">
-                                        <p id="description">I am a playful, yet cautious dog.  I love pets, and cuddles to a limit.  Hate squirrels, they are satan-spawn.  I love playing with other dogs, particularly those around my size, and I am very submissive of those bigger than me.  I always need new friends.</p>
+                                        <p id="description">{{this.description}}</p>
                                     </div>
                                     
                                 </div>
@@ -62,4 +63,5 @@
 
                         </div>
                     </div>
+                    {{/each}}
                 </div> 

@@ -1,3 +1,4 @@
+var imageUrl = "";
 
 var showLogin = function(){
     var emailHeader = "<h1>Email</h>";
@@ -173,15 +174,14 @@ $(document).ready(function(){
     
     });
     // storing scores as array
-    $(".submitBtn").on("click", function() {
-        console.log("CLICKEDJKASDJAKLSD")
-        var scores =  [];
-        // for loop to run through chosen answer values
-        for (i = 1; i < 11; i++) {
-            var newVal = $('#q' + i).val();
-            scores.push(parseInt(newVal));
-        }
-        event.preventDefault();
-        console.log(scores);
+    // $(".submitBtn").on("click", function() {
+    //     console.log("CLICKEDJKASDJAKLSD")
+    //     var scores =  [];
+    //     // for loop to run through chosen answer values
+    //     for (i = 1; i < 11; i++) {
+    //         var newVal = $('#q' + i).val();
+    //         scores.push(parseInt(newVal));
+    //     }
+    //     event.preventDefault();
+    //     console.log(scores);
     });
-});

@@ -32,3 +32,9 @@
             background-color: #FFFAF0;
             height: 275px;
         }
+        #profileImg {
+            height: 350px;
+            width: 250px;
+            margin-left: 135px;
+            margin-top: -45px;
+        }
