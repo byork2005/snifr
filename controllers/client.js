@@ -160,6 +160,14 @@ router.get('/profile/:userId', function (req, res) {
     });
 });
 
+router.get('/update/profile', function(req, res){
+    res.render('updateProfile');
+});
+
+router.get('/update/survey', function(req, res){
+    res.render('updateSurvey');
+})
+
 router.get('/barks', function (req, res) {
     res.render('barksPage')
 })
