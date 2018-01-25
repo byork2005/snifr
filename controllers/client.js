@@ -4,6 +4,7 @@ var passport = require('passport');
 var models = require('../models');
 var Sequelize = require('sequelize');
 var user;
+const Op = Sequelize.Op;
 
 var sequelize = new Sequelize("snifrdev", "snifrdev", "Iz4OA~!snolU", {
     host: "den1.mysql1.gear.host",
@@ -131,9 +132,39 @@ router.get('/profile/:userId', function (req, res) {
     });
 });
 
-router.get('/barks', function (req, res) {
-    res.render('barksPage')
-})
+// MAIN BARKS PAGE - should have all incoming/outgoing barks - but only display the dogs - not the actual convo
+router.get('/barks', ensureAuth, function (req, res) {
+    models.Communication.findAll({
+        where: {
+        [Op.or]: [{initiator_id: req.user.id}, {receiver_id: req.user.id}]
+        //need to limit it to 1 instance of each person
+        },
+        include: [models.Dog]
+    }).then(function (data) {
+        console.log(data);
+        let userInfo = data.get();
+        console.log(data)
+        console.log(data.Dogs)
+        res.render('barksPage', { Dog: data.Dogs });
+    });
+});
+
+// CONVO PAGE - when you click the convo on the main page - it should take you to the chat which shows your chats with specific user you clicked
+router.get('/barks/:otherDog', ensureAuth, function (req, res) {
+    models.Communication.findOne({
+        where: {
+            [Op.or]: [{initiator_id: req.user.id}, {receiver_id: req.user.id}]
+            },
+            include: [models.Dog]
+    }).then(function (data) {
+        // console.log(data);
+        let userInfo = data.get();
+        // console.log(data)
+        // console.log(data.Dogs)
+        res.render('barksMsgsPage', { Dog: data.Dogs });
+    });
+});
+//------------------------------------------------
 //end of handlebars routes
 
 router.get('/signin', function (req, res) {
