@@ -153,7 +153,8 @@ router.get('/barks', ensureAuth, function (req, res) {
 router.get('/barks/:otherDog', ensureAuth, function (req, res) {
     models.Communication.findOne({
         where: {
-            [Op.or]: [{initiator_id: req.user.id}, {receiver_id: req.user.id}]
+            [Op.or]: [{initiator_id: req.user.id}, {receiver_id: req.user.id}],
+            [Op.or]: [{initiator_id: req.params.otherDog}, {receiver_id: req.params.otherDog}]
             },
             include: [models.Dog]
     }).then(function (data) {
