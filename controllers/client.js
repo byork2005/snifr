@@ -177,11 +177,15 @@ router.get('/update/profile', function(req, res){
 
 router.get('/update/survey', function(req, res){
     res.render('updateSurvey');
-})
+});
+
+router.get('/update/filter', function(req, res){
+    res.render('updateFilter');
+});
 
 router.get('/barks', function (req, res) {
-    res.render('barksPage')
-})
+    res.render('barksPage');
+});
 //end of handlebars routes
 
 router.get('/signin', function (req, res) {

@@ -66,4 +66,17 @@ router.put('/survey', function(req, res){
         });
     });
 });
+
+router.get('/filter', function(req, res){
+    models.Dog.findOne({
+        where: {
+            UserId: req.user.id
+        },
+        include: [{model: models.Filter}]
+    }).then(dog => {
+        let filter = dog.Filter;
+        res.json(filter.toJSON()).end();
+    })
+})
+
 module.exports = router;

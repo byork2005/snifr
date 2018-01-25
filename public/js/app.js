@@ -126,7 +126,7 @@ var addFilter = function(){
     if (temperament === "NA"){
         temperament = null;
     }
-    let data = {sex, fixed, size, temperament}
+    let data = {sex_pref: sex, fixed_pref: fixed, size_pref: size, temperament_pref: temperament}
     
     $.post(window.location.href, data).then(resp => {
         console.log(resp);
@@ -181,6 +181,25 @@ var updateSurvey = function(){
 
 $(document).ready(function(){
 
+    let updateFilterBtn = $("#updateFilter");
+    if (updateFilterBtn.length > 0){
+        $.getJSON('/api/filter', data => {
+            console.log(data);
+            if (data.fixed_pref){
+                $(`#fixed option[value="${data.fixed_pref}"`).attr("selected", "selected");
+            }
+            if (data.sex_pref){
+                $(`#sex option[value="${data.sex_pref}"`).attr("selected", "selected");
+            }
+            if (data.size_pref){
+                $(`#size option[value="${data.size_pref}"`).attr("selected", "selected");
+            }
+            if (data.temperament_pref){
+                $(`#temperament option[value="${data.temperament_pref}"`).attr("selected", "selected");
+            }
+        })
+    }
+    
     let updateDog = $("#updateProfile")
     if (updateDog.length > 0){
         $.getJSON('/api/profile', data => {
