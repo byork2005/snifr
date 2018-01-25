@@ -151,7 +151,7 @@ router.get('/barks', ensureAuth, function (req, res) {
 
 // CONVO PAGE - when you click the convo on the main page - it should take you to the chat which shows your chats with specific user you clicked
 router.get('/barks/:otherDog', ensureAuth, function (req, res) {
-    models.Communication.findOne({
+    models.Communication.findAll({
         where: {
             [Op.or]: [{initiator_id: req.user.id}, {receiver_id: req.user.id}],
             [Op.or]: [{initiator_id: req.params.otherDog}, {receiver_id: req.params.otherDog}]
