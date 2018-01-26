@@ -19,6 +19,7 @@ module.exports = function(sequelize, DataTypes) {
     Communication.associate = function(models) {
         Communication.belongsTo(models.User, {foreignKey: 'initiator_id', targetKey: 'id'})
         Communication.belongsTo(models.User, {foreignKey: 'receiver_id', targetKey: 'id'})
+        Communication.belongsTo(models.Dog, {foreignKey: 'initiator_id', targetKey: 'id'})
     }
     return Communication;
 };

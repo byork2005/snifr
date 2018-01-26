@@ -1,17 +1,20 @@
+{{#each Barks}}
 <div id="barkListContainer">
-
+    
                     <div class="row" id="dogBarks">
                         <div class="col col-sm-2">
-                            <img src="" id="dogMatchImg">
+                            <img src="{{this.Dog.photo}}" id="dogMatchImg">
                         </div>
                         <div class="col col-sm-6">
-                            <h2 id="dogBarkName">Dog's Name: </h2>
+                            <h2 id="dogBarkName">Dog's Name: {{this.Dog.name}} </h2>
                             <hr>
-                            <h3 id="dogBarkHuman">Human's Name: </h3>
+                            <h3 id="dogBarkHuman">Message:{{this.message_content}} </h3>
                         </div>
                         <div class="col col-sm-4">
-                            <button type="button" class="btn btn-success" id="edit">Bark</button>
+                            <a type="button" class="btn btn-success" id="edit" href="/barks/{{this.Dog.id}}">Bark</a>
                         </div>
                     
                 </div>
+                
             </div>
+            {{/each}}

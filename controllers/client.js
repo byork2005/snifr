@@ -188,7 +188,7 @@ router.get('/update/filter', function(req, res){
 router.get('/barks', ensureAuth, function (req, res) {
     models.Communication.findAll({
         where: {
-        [Op.or]: [{initiator_id: req.user.id}, {receiver_id: req.user.id}]
+         receiver_id: req.user.id
         //need to limit it to 1 instance of each person
         },
         include: [models.Dog]
@@ -197,7 +197,7 @@ router.get('/barks', ensureAuth, function (req, res) {
         // let userInfo = data.get();
         // console.log(data)
         // console.log(data.Dogs)
-        res.render('barksPage', { Dog: data.Dogs });
+        res.render('barksPage', { Barks: data });
     });
 });
 
@@ -214,7 +214,7 @@ router.get('/barks/:otherDog', ensureAuth, function (req, res) {
         // let userInfo = data.get();
         // console.log(data)
         // console.log(data.Dogs)
-        res.render('barksMsgsPage', { Dog: data.Dogs });
+        res.render('barksMsgsPage', { Msgs: data });
     });
 });
 //end of handlebars routes
