@@ -202,18 +202,27 @@ router.get('/barks', ensureAuth, function (req, res) {
 });
 
 // CONVO PAGE - when you click the convo on the main page - it should take you to the chat which shows your chats with specific user you clicked
+//not working right
 router.get('/barks/:otherDog', ensureAuth, function (req, res) {
     models.Communication.findAll({
         where: {
-            [Op.or]: [{initiator_id: req.user.id}, {receiver_id: req.user.id}],
-            [Op.or]: [{initiator_id: req.params.otherDog}, {receiver_id: req.params.otherDog}]
-            },
+        [Op.or]: {
+            [Op.and]: [{initiator_id: req.user.id}, {receiver_id: req.params.otherDog}],
+            [Op.and]: [{initiator_id: req.params.otherDog}, {receiver_id: req.user.id}],
+        },
+    
+            message_type: "bark",
+        },
+            
+        
             include: [models.Dog]
+        
     }).then(function (data) {
         // console.log(data);
         // let userInfo = data.get();
         // console.log(data)
         // console.log(data.Dogs)
+        console.log(data)
         res.render('barksMsgsPage', { Msgs: data });
     });
 });
