@@ -206,22 +206,20 @@ router.get('/barks', ensureAuth, function (req, res) {
 router.get('/barks/:otherDog', ensureAuth, function (req, res) {
     models.Communication.findAll({
         where: {
-        [Op.or]: [{
-            [Op.and]: [{initiator_id: req.user.id}, {receiver_id: req.params.otherDog}]},
-            {[Op.and]: [{initiator_id: req.params.otherDog}, {receiver_id: req.user.id}]
-        }],
-    
+            [Op.or]: [{
+                [Op.and]: [{ initiator_id: req.user.id }, { receiver_id: req.params.otherDog }]
+            },
+            {
+                [Op.and]: [{ initiator_id: req.params.otherDog }, { receiver_id: req.user.id }]
+            }],
+
             message_type: "bark",
         },
-            
-        
-            include: [models.Dog]
-        
+
+
+        include: [models.Dog]
+
     }).then(function (data) {
-        // console.log(data);
-        // let userInfo = data.get();
-        // console.log(data)
-        // console.log(data.Dogs)
         console.log(data.map(d => d.toJSON()))
         res.render('barksMsgsPage', { Msgs: data });
     });
