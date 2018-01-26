@@ -4,6 +4,7 @@ var passport = require('passport');
 var models = require('../models');
 var Sequelize = require('sequelize');
 var user;
+const Op = Sequelize.Op;
 
 var sequelize = new Sequelize("snifrdev", "snifrdev", "Iz4OA~!snolU", {
     host: "den1.mysql1.gear.host",
