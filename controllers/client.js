@@ -162,6 +162,7 @@ router.get('/profile/:userId', function (req, res) {
             id: req.params.userId
         }
     }).then(function (data) {
+        
         data[0].size = parseTemp(data[0].size);
         let temp = data[0].temperament.split("");
         temp[0] = temp[0].toUpperCase();

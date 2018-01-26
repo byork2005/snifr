@@ -79,4 +79,28 @@ router.get('/filter', function(req, res){
     })
 })
 
+router.post('/sniff', function(req, res){
+    let sniffee = parseInt(req.body.dogId, 10);
+    console.log(typeof sniffee);
+    models.Dog.findOne({
+        where: {
+            UserId: req.user.id
+        }
+    }).then(dog => {
+        let sniffer = dog.id;
+        console.log("SNIFFEE: " + sniffee);
+        console.log("SNIFFER: " + sniffer);
+        
+        let sniff = {
+            message_type: "sniff",
+            initiator_id: sniffer,
+            receiver_id: sniffee
+        }
+        
+        return models.Communication.create(sniff);
+    }).then(resp => {
+        res.json({status: "SUCCESS"});
+    });
+})
+
 module.exports = router;

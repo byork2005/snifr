@@ -179,6 +179,15 @@ var updateSurvey = function(){
     })
 }
 
+var sniff = function(){
+    $("#sniffBtn").attr("disabled", "disabled");
+    let dogId = parseInt($("#profileFull").attr("dog-id"), 10);
+    console.log(dogId);
+    $.post('/api/sniff', {dogId}).then((resp) => {
+        console.log(resp);
+    });
+}
+
 $(document).ready(function(){
 
     let updateFilterBtn = $("#updateFilter");
@@ -230,6 +239,8 @@ $(document).ready(function(){
         })
     }
     
+    
+    $("#sniffBtn").click(sniff);
     $("#updateProfile").click(updateProfile);
     $("#updateSurvey").click(updateSurvey);
     $("#about").on("click", aboutShow);
