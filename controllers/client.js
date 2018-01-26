@@ -17,7 +17,22 @@ var sequelize = new Sequelize("snifrdev", "snifrdev", "Iz4OA~!snolU", {
 
 });
 
+var assertThrows = function(func, x) {
+    var threw = false;
+    try {
+        func(x);
+    } catch (err) {
+        threw = true;
+        console.log()
+    }
+    return threw;
+}
+console.log("Did the test catch an error?: ", assertThrows(parseTemp, 'cat'))
+
 var parseTemp = function(temp){
+    if(temp !== 'less25' && temp !== 'less50' && temp !== 'less75' && temp !== 'less100' && temp !== 'over100') {
+        throw new Error('Please choose a preference!');
+    }
     console.log("++++++++");
     console.log(temp);
     console.log("++++++++")
@@ -38,9 +53,11 @@ var parseTemp = function(temp){
         case "over100":
             printTemp = "Over 100lbs";
             break;
+        default:
     }
     return printTemp;
 }
+
 
 var ensureAuth = function (req, res, next) {
     console.log("authing");
