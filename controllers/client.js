@@ -17,6 +17,11 @@ var sequelize = new Sequelize("snifrdev", "snifrdev", "Iz4OA~!snolU", {
 
 });
 
+function percent(score) {
+    var percentile = 100 - (score * 2.5)
+    return percentile
+}
+
 var assertThrows = function(func, x) {
     var threw = false;
     try {
@@ -153,18 +158,10 @@ router.get('/matches', function (req, res) {
     }).then(dog => {
         let dogId = dog.toJSON().id;
         
-        let matchQuery = "select a.id as yourDog, b.id as matchDog, d.name as dogName, d.photo as dogPhoto, d.breed as dogBreed, abs(a.q1 - b.q1) + abs(a.q2 - b.q2) + abs(a.q3 - b.q3)+ abs(a.q4 - b.q4)+ abs(a.q5 - b.q5)+ abs(a.q6 - b.q6)+ abs(a.q7 - b.q7)+ abs(a.q8 - b.q8)+ abs(a.q9 - b.q9)+ abs(a.q10 - b.q10) as scorediff from surveys a inner join surveys b on b.id != a.id inner join dogs d on d.id = b.DogId where a.id=" + dogId + " order by scorediff asc";
+        let matchQuery = "select a.id as yourDog, b.id as matchDog, d.name as dogName, d.photo as dogPhoto, d.breed as dogBreed, abs(a.q1 - b.q1) + abs(a.q2 - b.q2) + abs(a.q3 - b.q3)+ abs(a.q4 - b.q4)+ abs(a.q5 - b.q5)+ abs(a.q6 - b.q6)+ abs(a.q7 - b.q7)+ abs(a.q8 - b.q8)+ abs(a.q9 - b.q9)+ abs(a.q10 - b.q10) as scorediff, (100 - (SELECT scorediff * 2.5)) AS percentage from surveys a inner join surveys b on b.id != a.id inner join dogs d on d.id = b.DogId where a.id=" + dogId + " order by scorediff asc";
     console.log(matchQuery);
     sequelize.query(matchQuery, dogId).spread((results, metadata) => {
-        //       //math for % of match - wasn't able to push to page but works  
-        //     // var diff = results[i].scorediff;
-        //     // console.log(diff)
-        //     // var math = 100-((diff/40)*100);
-        //     // console.log(math);
-        // console.log("all done");
-        console.log(results);
         res.render('matchPage', { Match: results });
-        // console.log(results);
     });
     })
     
