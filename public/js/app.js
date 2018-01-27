@@ -38,6 +38,18 @@ var submitLogin = function(){
             });
 };
 
+var sendMsg = function(){
+    let msg = $("#barkMsgInput").val().trim();
+    console.log(msg);
+
+    let data = {msg}
+    
+    $.post(window.location.href, data).then(resp => {
+        console.log(resp);
+        window.location.replace(`/barks/${resp.receiver_id}`);
+});
+};
+
 var gotoSignup = function(){
     window.location.replace('/user');
 }
@@ -240,6 +252,7 @@ $(document).ready(function(){
     $("#submitDog").click(addDog);
     $("#submitSurvey").click(addSurvey);
     $("#submitFilter").click(addFilter);
+    $("#sendMsgBtn").click(sendMsg);
 
     var CLOUDINARY_URL = 'https://api.cloudinary.com/v1_1/dakke3tr6/upload';
     var CLOUDINARY_UPLOAD_PRESET = 'i2fwawg4'

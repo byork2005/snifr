@@ -4,6 +4,7 @@ var passport = require('passport');
 var models = require('../models');
 var Sequelize = require('sequelize');
 var user;
+const Op = Sequelize.Op;
 
 var sequelize = new Sequelize("snifrdev", "snifrdev", "Iz4OA~!snolU", {
     host: "den1.mysql1.gear.host",
@@ -200,10 +201,76 @@ router.get('/update/filter', function(req, res){
     res.render('updateFilter');
 });
 
-router.get('/barks', function (req, res) {
-    res.render('barksPage');
+// MAIN BARKS PAGE - should have all incoming/outgoing barks - but only display the dogs - not the actual convo
+router.get('/barks', ensureAuth, function (req, res) {
+    models.Communication.findAll({
+        where: {
+         receiver_id: req.user.id
+        //need to limit it to 1 instance of each person
+        },
+        include: [models.Dog]
+    }).then(function (data) {
+        // console.log(data);
+        // let userInfo = data.get();
+        // console.log(data)
+        // console.log(data.Dogs)
+        res.render('barksPage', { Barks: data });
+    });
+});
+
+// CONVO PAGE - when you click the convo on the main page - it should take you to the chat which shows your chats with specific user you clicked
+//not working right
+router.get('/barks/:otherDog', ensureAuth, function (req, res) {
+    models.Communication.findAll({
+        where: {
+            [Op.or]: [{
+                [Op.and]: [{ initiator_id: req.user.id }, { receiver_id: req.params.otherDog }]
+            },
+            {
+                [Op.and]: [{ initiator_id: req.params.otherDog }, { receiver_id: req.user.id }]
+            }],
+
+            message_type: "bark",
+        },
+
+
+        include: [models.Dog]
+
+    }).then(function (data) {
+        console.log(data.map(d => d.toJSON()))
+        res.render('barksMsgsPage', { Msgs: data });
+    });
+});
+
+router.post('/barks/:otherDog', function (req, res) {
+    let newBark = req.body;
+    console.log("------------------------")
+    console.log(req.body);
+    newBark["receiver_id"] = req.params.otherDog;
+    newBark["initiator_id"] = req.user.id;
+    newBark["message_type"] = "bark";
+    newBark["message_content"] = req.body.msg;
+    models.Communication.create(newBark).then(resp => {
+        res.json({
+            status: "success",
+            initiator_id: req.user.id,
+            receiver_id: req.params.otherDog,
+            message_type: "bark"
+        });
+    })
 });
 //end of handlebars routes
+// router.post('/user/:userId/dog/:dogId/survey', function (req, res) {
+//     let newSurvey = req.body;
+//     newSurvey["DogId"] = req.params.dogId;
+//     models.Survey.create(newSurvey).then(resp => {
+//         res.json({
+//             status: "success",
+//             userId: req.params.userId,
+//             dogId: req.params.dogId
+//         });
+//     })
+// });
 
 router.get('/signin', function (req, res) {
     var hbsObj = {};
