@@ -224,7 +224,36 @@ router.get('/barks/:otherDog', ensureAuth, function (req, res) {
         res.render('barksMsgsPage', { Msgs: data });
     });
 });
+
+router.post('/barks/:otherDog', function (req, res) {
+    let newBark = req.body;
+    console.log("------------------------")
+    console.log(req.body);
+    newBark["receiver_id"] = req.params.otherDog;
+    newBark["initiator_id"] = req.user.id;
+    newBark["message_type"] = "bark";
+    newBark["message_content"] = req.body.msg;
+    models.Communication.create(newBark).then(resp => {
+        res.json({
+            status: "success",
+            initiator_id: req.user.id,
+            receiver_id: req.params.otherDog,
+            message_type: "bark"
+        });
+    })
+});
 //end of handlebars routes
+// router.post('/user/:userId/dog/:dogId/survey', function (req, res) {
+//     let newSurvey = req.body;
+//     newSurvey["DogId"] = req.params.dogId;
+//     models.Survey.create(newSurvey).then(resp => {
+//         res.json({
+//             status: "success",
+//             userId: req.params.userId,
+//             dogId: req.params.dogId
+//         });
+//     })
+// });
 
 router.get('/signin', function (req, res) {
     var hbsObj = {};
