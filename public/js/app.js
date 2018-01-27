@@ -227,7 +227,7 @@ $(document).ready(function(){
             $(`#temperament option[value="${data.temperament}"]`).attr("selected", "selected");
         });
     } else {
-        console.log("not update page");
+        // console.log("not update page");
     }
     
     let updateSurveyBtn = $("#updateSurvey");
@@ -279,7 +279,7 @@ $(document).ready(function(){
     // console.log(res.data.url)
     imageUrl = res.data.secure_url;
     
-    // imgPreview.src = res.data.secure_url;
+    imgThumbnail.src = res.data.secure_url;
     }).catch(function(err){
         console.error(err)
     })
