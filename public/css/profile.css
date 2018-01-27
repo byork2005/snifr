@@ -32,6 +32,7 @@
     background-color: #FFFAF0;
     height: 60px;
     margin-top: 25px;
+    margin-left: 10px;
 }
 
 #sniffBtn {
@@ -48,9 +49,9 @@
     display: block;
     margin-left: auto;
     margin-right: auto;
-    width: 130px;
+    width: 200px;
     height: 40px;
-    margin-top: 3%;
+    margin-top: 1%;
     font-size: 20px;
 }
 
