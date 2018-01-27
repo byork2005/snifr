@@ -24,14 +24,14 @@ var submitLogin = function(){
      let email = $("#email").val().trim();
             $("#email").val("");
             let password = $("#password").val().trim();
-            console.log(email);
-            console.log(password);
+            // console.log(email);
+            // console.log(password);
             
             $.post("/signin", {
                 username: email,
                 password: password
             }).then(data => {
-                console.log(data);
+                // console.log(data);
                 if (data.authorized === "YES"){
                     window.location.replace('/home');
                 }
@@ -40,12 +40,12 @@ var submitLogin = function(){
 
 var sendMsg = function(){
     let msg = $("#barkMsgInput").val().trim();
-    console.log(msg);
+    // console.log(msg);
 
     let data = {msg}
     
     $.post(window.location.href, data).then(resp => {
-        console.log(resp);
+        // console.log(resp);
         window.location.replace(`/barks/${resp.receiver_id}`);
 });
 };
@@ -66,7 +66,7 @@ var signup = function(){
                 email: email,
                 password: password
             }).then(function(data){
-                console.log(data);
+                // console.log(data);
                 if (data.signup === "success"){
                     window.location.replace(`/user/${data.user}/dog`);
                 }
@@ -90,12 +90,12 @@ var addDog = function(){
         temperament, fixed, photo, description
     }
     
-    console.log(data);
+    // console.log(data);
     let href = window.location.href;
     $.post(href, data).then(resp => {
-        console.log(resp)
+        // console.log(resp)
         let dogId = resp.dogId;
-        console.log(dogId)
+        // console.log(dogId)
         href += `/${dogId}/survey`
         window.location.replace(href);
     })
@@ -106,13 +106,13 @@ var addSurvey = function(){
     var data = {};
     questions.forEach(q => {
         data[q.id] = parseInt($(q).val());
-        console.log(q.id)
-        console.log($(q).val());
+        // console.log(q.id)
+        // console.log($(q).val());
     });
-    console.log(data);
+    // console.log(data);
     
     $.post(window.location.href, data).then(resp => {
-        console.log(resp);
+        // console.log(resp);
         let href = window.location.href;
         href = href.replace("survey", "filter");
         window.location.replace(href);
@@ -141,7 +141,7 @@ var addFilter = function(){
     let data = {sex_pref: sex, fixed_pref: fixed, size_pref: size, temperament_pref: temperament}
     
     $.post(window.location.href, data).then(resp => {
-        console.log(resp);
+        // console.log(resp);
         window.location.replace(`/profile/${resp.dogId}`);
     })
 }
@@ -164,7 +164,7 @@ var updateProfile = function(){
         method: 'PUT',
         data: data
     }).then(resp => {
-        console.log(resp);
+        // console.log(resp);
         if (resp.status === "SUCCESS"){
             window.location.replace('/home')
         }
@@ -178,13 +178,13 @@ var updateSurvey = function(){
         //$(q).val();
         //console.log(q.value);
     });
-    console.log(data);
+    // console.log(data);
     $.ajax({
         url: '/api/survey',
         method: 'PUT',
         data: data
     }).then(resp => {
-        console.log(resp);
+        // console.log(resp);
         if (resp.status === "SUCCESS"){
             window.location.replace('/home')
         }
@@ -233,9 +233,9 @@ $(document).ready(function(){
     let updateSurveyBtn = $("#updateSurvey");
     if (updateSurveyBtn.length > 0){
         $.getJSON('/api/survey', data => {
-            console.log(data);
+            // console.log(data);
             $(".question").map((i, q) => {
-                console.log(q.id);
+                // console.log(q.id);
                 $(`#${q.id} option[value="${data[q.id]}"`).attr("selected", "selected");
                 //console.log(data[`q.id`]);
             })
@@ -265,7 +265,7 @@ $(document).ready(function(){
     var formData = new FormData();
     formData.append('file', file);
     formData.append('upload_preset', CLOUDINARY_UPLOAD_PRESET);
-    console.log(file)
+    // console.log(file)
     
     axios({
         url: CLOUDINARY_URL,
@@ -275,8 +275,8 @@ $(document).ready(function(){
         },
         data: formData
     }).then(function(res){
-    console.log(res)
-    console.log(res.data.url)
+    // console.log(res)
+    // console.log(res.data.url)
     imageUrl = res.data.secure_url;
     
     // imgPreview.src = res.data.secure_url;
