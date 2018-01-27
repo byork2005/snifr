@@ -108,3 +108,16 @@
 #profileBasicInfoRow3 {
     
 }
+
+#photoSelect {
+    border: 2px solid #00008B;
+    background-color: aqua;
+    width: 150px;
+}
+
+#imgThumbnail {
+    border: 2px solid #00008B;
+    height: 50px;
+    display: block;
+    margin-left: 50px;
+}
