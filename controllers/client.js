@@ -39,9 +39,9 @@ var parseTemp = function(temp){
     if(temp !== 'less25' && temp !== 'less50' && temp !== 'less75' && temp !== 'less100' && temp !== 'over100') {
         throw new Error('Please choose a preference!');
     }
-    console.log("++++++++");
-    console.log(temp);
-    console.log("++++++++")
+    // console.log("++++++++");
+    // console.log(temp);
+    // console.log("++++++++")
     let printTemp = "";
     switch(temp){
         case "less25":
@@ -97,12 +97,12 @@ router.get('/user/:userId/dog', function (req, res) {
 });
 
 router.post('/user/:userId/dog', function (req, res) {
-    console.log(req.body)
+    // console.log(req.body)
     let newDog = req.body;
     newDog["UserId"] = req.user.id;
-    console.log(newDog);
+    // console.log(newDog);
     models.Dog.create(newDog).then(resp => {
-        console.log(resp.get());
+        // console.log(resp.get());
         res.json({ status: "success", dogId: resp.id });
     });
 });
@@ -142,10 +142,10 @@ router.get('/home', ensureAuth, function (req, res) {
         },
         include: [models.Dog]
     }).then(function (data) {
-        console.log(data);
+        // console.log(data);
         let userInfo = data.get();
-        console.log(data)
-        console.log(data.Dogs)
+        // console.log(data)
+        // console.log(data.Dogs)
         res.render('homePage', { Dog: data.Dogs });
     });
 });
@@ -160,7 +160,7 @@ router.get('/matches', function (req, res) {
         let dogId = dog.toJSON().id;
         
         let matchQuery = "select a.id as yourDog, b.id as matchDog, d.name as dogName, d.photo as dogPhoto, d.breed as dogBreed, abs(a.q1 - b.q1) + abs(a.q2 - b.q2) + abs(a.q3 - b.q3)+ abs(a.q4 - b.q4)+ abs(a.q5 - b.q5)+ abs(a.q6 - b.q6)+ abs(a.q7 - b.q7)+ abs(a.q8 - b.q8)+ abs(a.q9 - b.q9)+ abs(a.q10 - b.q10) as scorediff, (100 - (SELECT scorediff * 2.5)) AS percentage from surveys a inner join surveys b on b.id != a.id inner join dogs d on d.id = b.DogId where a.id=" + dogId + " order by scorediff asc";
-    console.log(matchQuery);
+    // console.log(matchQuery);
     sequelize.query(matchQuery, dogId).spread((results, metadata) => {
         res.render('matchPage', { Match: results });
     });
@@ -181,7 +181,7 @@ router.get('/profile/:userId', function (req, res) {
         let temp = data[0].temperament.split("");
         temp[0] = temp[0].toUpperCase();
         data[0].temperament = temp.join("");
-        console.log(data);
+        // console.log(data);
         res.render('profile', { Profile: data });
     });
 });
@@ -234,15 +234,15 @@ router.get('/barks/:otherDog', ensureAuth, function (req, res) {
         include: [models.Dog]
 
     }).then(function (data) {
-        console.log(data.map(d => d.toJSON()))
+        // console.log(data.map(d => d.toJSON()))
         res.render('barksMsgsPage', { Msgs: data });
     });
 });
 
 router.post('/barks/:otherDog', function (req, res) {
     let newBark = req.body;
-    console.log("------------------------")
-    console.log(req.body);
+    // console.log("------------------------")
+    // console.log(req.body);
     newBark["receiver_id"] = req.params.otherDog;
     newBark["initiator_id"] = req.user.id;
     newBark["message_type"] = "bark";
@@ -323,8 +323,8 @@ router.get('/notAuth', function (req, res) {
 router.get('/auth',
     ensureAuth,
     function (req, res) {
-        console.log("render auth");
-        console.log(req.user);
+        // console.log("render auth");
+        // console.log(req.user);
         var hbsObj = {};
         //res.render('auth', req.user);
         res.json({ authorized: "YES" })
