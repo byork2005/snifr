@@ -15,3 +15,5 @@ Snifr is our second group project of the KU Coding Bootcamp. Our task was to cre
 ## Description
 
 Our application snifr is a dating app for dogs. The idea is that a owner can create themselves a profile and add thier dogs. Each dog gets a profile with basic information along with a survey of their likes and dislikes. They also get to list if they have any preferences in other dogs. Our app would collect the data and save it in a database, then whenever the matches link was selected the user would see all the dog matches in order by highest percent match of survey answers, removing any dogs that didn't fit the preference critera.
+
+[snifr](https://project2-snifr.herokuapp.com/)
